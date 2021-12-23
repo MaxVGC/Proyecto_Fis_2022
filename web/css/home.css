@@ -1,0 +1,96 @@
+#BarraHome {
+    background-color: #242424;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    -webkit-border-radius: 30px 0px 0px 0px;
+    border-bottom: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(90deg, rgba(36, 36, 36, 1) 0%, rgba(51, 51, 51, 1) 50%, rgba(36, 36, 36, 1) 100%);
+}
+a{
+    color:#272727;
+}
+#Dtemp {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30 px;
+}
+
+#sugerencias{
+    position: absolute;
+    left: 250px;
+    width: 250px;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 1s; 
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+#sugerencias.open{
+    opacity: 1;
+}
+
+#pronostico {
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    border-left: 3px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(180deg, rgba(36, 36, 36, 1) 0%, rgba(51, 51, 51, 1) 50%, rgba(36, 36, 36, 1) 100%);
+}
+
+#pronostico::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#pronostico::-webkit-scrollbar-thumb {
+    width: 5px;
+    height: 5px;
+    top: 1px;
+    background-image: linear-gradient(90deg, rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+    border-radius: 10px;
+}
+
+#Fpronostico {
+    background-color: #242424;
+    display: flex;
+    height: 80%;
+    margin-left: 30px;
+    -webkit-border-radius: 30px 30px 30px 30px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iconC {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin-top: -20px;
+}
+
+#metricas {
+    font-size: 0.8rem;
+    color: white;
+    margin-left: 5px;
+}
+
+#datos i {
+    font-size: 24px;
+}
+
+#datos #dcontain {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#Gfc_Hora {
+    width: 230px;
+    height: 200px;
+}
