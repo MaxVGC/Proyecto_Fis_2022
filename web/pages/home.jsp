@@ -14,6 +14,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <script type="module" src="../js/Buscador.js" defer></script>
+        <script type="module" src="../js/btn_favoritos.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script type="module" src="../js/home.js" defer></script>
@@ -41,8 +42,8 @@
                     <i class='bx bx-search'></i>
                     <div id="sugerencias">
                     </div>
-                    <input id="inputs" type="text" placeholder="Search...">
-                    <span class="tooltip">Search</span>
+                    <input autocomplete="off" id="inputs" type="text" placeholder="Buscar ciudad...">
+                    <span class="tooltip">Buscar</span>
                 </li>
                 <li>
                     <a id="home_link" href="#">
@@ -66,11 +67,11 @@
                     <span class="tooltip">Analytics</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="fav_link" href="#">
                         <i class='bx bx-heart'></i>
-                        <span class="links_name">Saved</span>
+                        <span class="links_name">Favoritos</span>
                     </a>
-                    <span class="tooltip">Saved</span>
+                    <span class="tooltip">Favoritos</span>
                 </li>
                 <li>
                     <a href="#">
@@ -187,11 +188,13 @@
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
+               // b_sugerencias();
             });
 
             searchBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
+               // b_sugerencias();
             });
 
             function menuBtnChange() {
@@ -199,6 +202,13 @@
                     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
                 } else {
                     closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+                }
+            }
+
+            function b_sugerencias() {
+                
+                if (document.querySelector("#sugerencias.open")) {
+                    document.getElementById("sugerencias").className = "";
                 }
             }
         </script>

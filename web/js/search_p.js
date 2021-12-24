@@ -1,32 +1,73 @@
 import { API_KEY_OpenWeather } from '../js/keys.js';
 import { API_KEY_GOOGLE } from '../js/keys.js';
-var divs = '';
+
+let FavBtn = document.querySelector("#btn_fav");
 let params = new URLSearchParams(location.search);
+
 var user = params.get('n');
 var type = params.get('u');
 var id = params.get('id');
+var lat;
+var lng;
+var namecity;
+var divs = '';
 
 ObtenerLatLngId(id);
 name();
 
+FavBtn.addEventListener("click", () => {
+    if (document.querySelector("#btn_fav.bx.bx-heart")) {
+        document.getElementById("btn_fav").className = "bx bxs-heart";
+        $.get('../registrarfavorito?lat=' + lat + '&lng=' + lng + '&city=' + namecity + '&user=' + user, function (data) {
+            alert(data);
+        });
+    } else if (document.querySelector("#btn_fav.bx.bxs-heart")) {
+        document.getElementById("btn_fav").className = "bx bx-heart";
+        $.get('../eliminarfavorito?&city=' + namecity + '&user=' + user, function (data) {
+            alert(data);
+        });
+    }
+});
 
+
+function GuardarCoordenadas(lat1, lng1, cname) {
+    lat = lat1;
+    lng = lng1;
+    namecity = cname;
+}
+
+function ValidarFavorito(name) {
+    $.get('../validarfavorito?city=' + name + '&user=' + user, function (data) {
+        if (data == 1) {
+            document.getElementById("btn_fav").className = "bx bxs-heart";
+        } else {
+            document.getElementById("btn_fav").className = "bx bx-heart";
+        }
+    });
+}
 
 function ObtenerLatLngId() {
     fetch("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
             .then((res) => res.json()).then(data => {
         var lat = data.result.geometry.location.lat;
         var lng = data.result.geometry.location.lng;
-        ObtenerDatosClima(lat, lng);
+        var name = data.result.address_components[0].long_name;
+        ValidarFavorito(name);
+        ObtenerDatosClima(lat, lng, name);
         pronostico(lat, lng);
         ObtenerCalidadDelAire(lat, lng)
+        GuardarCoordenadas(lat, lng, name);
     });
 }
-function ObtenerDatosClima(lat, lng) {
+
+function ObtenerDatosClima(lat, lng, name) {
     $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function (data) {
+        document.title = "Buscar - " + name;
+        document.getElementById('fav_link').href = "favoritos.jsp?n=" + user + "&u=" + type + "";
         document.getElementById('home_link').href = "home.jsp?n=" + user + "&u=" + type + "";
         document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
         document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
-        document.getElementById('city').innerHTML = data.name + "";
+        document.getElementById('city').innerHTML = name + "";
         document.getElementById('fondoi').style.backgroundImage = "url('https://source.unsplash.com/1288x665/?" + (data.name) + "')"
         document.getElementById('country').innerHTML = data.sys.country + "";
         document.getElementById('inf').innerHTML = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1) + "";
@@ -36,6 +77,7 @@ function ObtenerDatosClima(lat, lng) {
         document.getElementById('presion').innerHTML = data.main.pressure + "hPa";
         document.getElementById('velv').innerHTML = data.wind.speed + " m/s";
         document.getElementById('st').innerHTML = Math.round(data.main.feels_like) + "°";
+
         Bar_perc(((data.clouds.all) * 180 / 100) + 180, 1);
         Bar_perc(((data.main.humidity) * 180 / 100) + 180, 2);
     });

@@ -11,9 +11,10 @@ ObtenerCalidadDelAire()
 
 function ObtenerDatosClima() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function(data) {
-                document.getElementById('home_link').href="home.jsp?n=" + user + "&u=" + type + "";
+        navigator.geolocation.getCurrentPosition(function (position) {
+            $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function (data) {
+                document.getElementById('fav_link').href = "favoritos.jsp?n=" + user + "&u=" + type + "";
+                document.getElementById('home_link').href = "home.jsp?n=" + user + "&u=" + type + "";
                 document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
                 document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
                 document.getElementById('city').innerHTML = data.name + "";
@@ -35,8 +36,8 @@ function ObtenerDatosClima() {
 
 function ObtenerCalidadDelAire() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            $.get("http://api.openweathermap.org/data/2.5/air_pollution?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&appid=" + API_KEY_OpenWeather, function(data) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            $.get("http://api.openweathermap.org/data/2.5/air_pollution?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&appid=" + API_KEY_OpenWeather, function (data) {
                 switch (data.list[0].main.aqi) {
                     case 1:
                         document.getElementById('aqi').innerHTML = "Bueno";
@@ -78,7 +79,7 @@ function fecha(dt) {
     const milliseconds = dt * 1000;
     const dateObject = new Date(milliseconds);
     const humanDateFormat = dateObject.toLocaleString();
-    let fecha = [dateObject.toLocaleString("es-MX", { weekday: "long" }), dateObject.toLocaleString("es-MX", { day: "numeric" }), dateObject.toLocaleString("es-MX", { month: "numeric" })]
+    let fecha = [dateObject.toLocaleString("es-MX", {weekday: "long"}), dateObject.toLocaleString("es-MX", {day: "numeric"}), dateObject.toLocaleString("es-MX", {month: "numeric"})]
     return fecha;
 }
 
@@ -87,15 +88,15 @@ function ObtenerHora(dt) {
     const milliseconds = dt * 1000;
     const dateObject = new Date(milliseconds);
     const humanDateFormat = dateObject.toLocaleString();
-    let fecha = dateObject.toLocaleString("en-US", { hour: "numeric" });
+    let fecha = dateObject.toLocaleString("en-US", {hour: "numeric"});
     return fecha;
 }
 
 
 function pronostico() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            $.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&units=metric&lang=es&exclude=minutely&appid=" + API_KEY_OpenWeather, function(data) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            $.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&units=metric&lang=es&exclude=minutely&appid=" + API_KEY_OpenWeather, function (data) {
                 ObtenerProbabilidadDeLluvia(data);
                 crear_grafico(data);
                 for (var i = 1; i <= 7; i++) {
@@ -135,15 +136,15 @@ function crear_grafico(data) {
         data: {
             labels: [ObtenerHora(data.hourly[1].dt), ObtenerHora(data.hourly[2].dt), ObtenerHora(data.hourly[3].dt), ObtenerHora(data.hourly[4].dt), ObtenerHora(data.hourly[5].dt)],
             datasets: [{
-                label: 'Prob. de lluvia por hora (%)',
-                borderColor: 'rgb(0, 0, 252)',
-                backgroundColor: 'rgb(0,0,0)',
-                data: [Math.round(data.hourly[1].pop * 100), Math.round(data.hourly[2].pop * 100), Math.round(data.hourly[3].pop * 100), Math.round(data.hourly[4].pop * 100), Math.round(data.hourly[5].pop * 100)],
-            }]
+                    label: 'Prob. de lluvia por hora (%)',
+                    borderColor: 'rgb(0, 0, 252)',
+                    backgroundColor: 'rgb(0,0,0)',
+                    data: [Math.round(data.hourly[1].pop * 100), Math.round(data.hourly[2].pop * 100), Math.round(data.hourly[3].pop * 100), Math.round(data.hourly[4].pop * 100), Math.round(data.hourly[5].pop * 100)],
+                }]
         },
         options: {
             scales: {
-                
+
             }
         }
     });

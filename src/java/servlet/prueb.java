@@ -4,13 +4,8 @@
  */
 package servlet;
 
-import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author carlo
  */
-public class controlador extends HttpServlet {
+public class prueb extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,31 +28,11 @@ public class controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("puta");
             
-            conexionJDBC conexion = new conexionJDBC();
-            conexion.conectar();
-            try (PrintWriter out = response.getWriter()) {
-                if(!conexion.getConexion().isClosed()){
-                    out.println("conecto id:"+request.getParameter("id")+" user:"+request.getParameter("user"));
-                }
-            }
-            String sql = "INSERT INTO prueba (id,usuario) VALUES ("+request.getParameter("id")+",'"+request.getParameter("user")+"')";
-            PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
-            pst.execute();
-            
-            conexion.getConexion().close();
-//        try (PreparedStatement pst = conexion.getConexion().prepareStatement(sql)) {
-//            pst.setString(1, request.getParameter("id"));
-//            pst.setString(2, request.getParameter("user"));
-//            pst.execute();
-//            request.getRequestDispatcher("prueba.html").forward(request, response);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        }   catch (SQLException ex) {
-            Logger.getLogger(controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

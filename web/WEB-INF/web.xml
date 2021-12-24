@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>controlador</servlet-name>
-        <servlet-class>servlet.controlador</servlet-class>
+        <servlet-class>servlet.controladora</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>registrarusuario</servlet-name>
@@ -11,6 +11,22 @@
     <servlet>
         <servlet-name>validarusuario</servlet-name>
         <servlet-class>servlet.validarusuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>registrarfavorito</servlet-name>
+        <servlet-class>servlet.registrarfavorito</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarfavorito</servlet-name>
+        <servlet-class>servlet.eliminarfavorito</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>prueb</servlet-name>
+        <servlet-class>servlet.prueb</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validarfavorito</servlet-name>
+        <servlet-class>servlet.validarfavorito</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
@@ -23,6 +39,22 @@
     <servlet-mapping>
         <servlet-name>validarusuario</servlet-name>
         <url-pattern>/validarusuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registrarfavorito</servlet-name>
+        <url-pattern>/registrarfavorito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarfavorito</servlet-name>
+        <url-pattern>/eliminarfavorito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>prueb</servlet-name>
+        <url-pattern>/prueb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validarfavorito</servlet-name>
+        <url-pattern>/validarfavorito</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
