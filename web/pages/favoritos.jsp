@@ -22,7 +22,7 @@
 
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
-        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="../css/favoritos.css">
         <link rel="stylesheet" href="../css/circle_progress.css">
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -94,9 +94,9 @@
             </ul>
         </div>
 
-        <section id="fondoi" class="home-section" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg'); background-size: cover;">
+        <section id="fondoi" class="home-section" >
             
-
+            
         </section>
 
         <script>
@@ -108,13 +108,13 @@
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-               // b_sugerencias();
+                // b_sugerencias();
             });
 
             searchBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-               // b_sugerencias();
+                // b_sugerencias();
             });
 
             function menuBtnChange() {
@@ -126,7 +126,7 @@
             }
 
             function b_sugerencias() {
-                
+
                 if (document.querySelector("#sugerencias.open")) {
                     document.getElementById("sugerencias").className = "";
                 }

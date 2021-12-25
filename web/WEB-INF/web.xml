@@ -28,6 +28,10 @@
         <servlet-name>validarfavorito</servlet-name>
         <servlet-class>servlet.validarfavorito</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>mostrarfavoritos</servlet-name>
+        <servlet-class>servlet.mostrarfavoritos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
         <url-pattern>/controlador</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>validarfavorito</servlet-name>
         <url-pattern>/validarfavorito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mostrarfavoritos</servlet-name>
+        <url-pattern>/mostrarfavoritos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

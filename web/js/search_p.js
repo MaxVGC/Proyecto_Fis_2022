@@ -52,11 +52,13 @@ function ObtenerLatLngId() {
         var lat = data.result.geometry.location.lat;
         var lng = data.result.geometry.location.lng;
         var name = data.result.address_components[0].long_name;
-        ValidarFavorito(name);
+        var cname = data.result.formatted_address;
+
+        ValidarFavorito(cname);
         ObtenerDatosClima(lat, lng, name);
         pronostico(lat, lng);
         ObtenerCalidadDelAire(lat, lng)
-        GuardarCoordenadas(lat, lng, name);
+        GuardarCoordenadas(lat, lng, cname);
     });
 }
 
