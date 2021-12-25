@@ -8,7 +8,7 @@
 <html lang="es" dir="ltr">
 
     <head>
-        <title>Buscar</title>
+        <title>Inicio</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -16,9 +16,10 @@
         <script type="module" src="../js/Buscador.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
-        <script type="module" src="../js/search_p.js" defer></script>
+        <script type="module" src="../js/favorito_p.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
         <script src="../js/jquery-3.4.1.min.js"></script>
+
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/home.css">
@@ -187,11 +188,13 @@
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
+               // b_sugerencias();
             });
 
             searchBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
+               // b_sugerencias();
             });
 
             function menuBtnChange() {
@@ -199,6 +202,13 @@
                     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
                 } else {
                     closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+                }
+            }
+
+            function b_sugerencias() {
+                
+                if (document.querySelector("#sugerencias.open")) {
+                    document.getElementById("sugerencias").className = "";
                 }
             }
         </script>
