@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import datos.Cifrador;
 
 /**
  *
@@ -40,6 +41,7 @@ public class registrarusuario extends HttpServlet {
         conexionJDBC conexion = new conexionJDBC();
         PrintWriter out = response.getWriter();
         try {
+            Cifrador n = new Cifrador();
             conexion.conectar();
             String s = "select * from usuarios";
             Statement q;
@@ -49,12 +51,12 @@ public class registrarusuario extends HttpServlet {
                 f.next();
             }
             int id = f.getInt("id") + 1;
-            String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo) VALUES (" + id + ",'" + request.getParameter("user") + "','" + request.getParameter("pass") + "','" + request.getParameter("name") + "','" + request.getParameter("apell") + "','" + request.getParameter("email") + "')";
+            String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo) VALUES (" + id + ",'" + request.getParameter("user") + "','" + n.hash(request.getParameter("pass")) + "','" + request.getParameter("name") + "','" + request.getParameter("apell") + "','" + request.getParameter("email") + "')";
             PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
             pst.execute();
             conexion.getConexion().close();
             response.sendRedirect("index.html");
-            
+
         } catch (SQLException ex) {
             out.println(ex);
             try {
@@ -62,6 +64,8 @@ public class registrarusuario extends HttpServlet {
             } catch (SQLException ex1) {
                 Logger.getLogger(registrarusuario.class.getName()).log(Level.SEVERE, null, ex1);
             }
+        } catch (Exception ex) {
+            Logger.getLogger(registrarusuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

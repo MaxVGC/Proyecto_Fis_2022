@@ -1,16 +1,16 @@
 import { API_KEY_OpenWeather } from '../js/keys.js';
 var divs = '';
 let params = new URLSearchParams(location.search);
-var user = params.get('n');
-var type = params.get('u');
+var user = atob(params.get('n'));
+var type = atob(params.get('u'));
 
 Construir();
 name();
 MostrarFavoritos();
 
 function Construir() {
-    document.getElementById('fav_link').href = "favoritos.jsp?n=" + user + "&u=" + type + "";
-    document.getElementById('home_link').href = "home.jsp?n=" + user + "&u=" + type + "";
+    document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+    document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
 }
 function MostrarFavoritos() {
     fetch('../mostrarfavoritos?user=' + user)
@@ -46,6 +46,6 @@ function ConstruirRow(id) {
 function ConstruirCard(row, id, data) {
     let city = data.favoritos[id].ciudad;
     const aux = city.split(",");
-    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4"><a href="favorito_p.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + user + '&u=' + type + '"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
+    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4"><a href="favorito_p.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + btoa(user) + '&u=' + btoa(type) + '"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
     document.getElementById('img_card_' + id).src = "https://source.unsplash.com/1288x665/?" + (aux[0]) + "";
 }

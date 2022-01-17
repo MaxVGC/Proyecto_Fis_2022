@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import datos.Cifrador;
 import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,13 +40,14 @@ public class validarusuario extends HttpServlet {
         conexionJDBC conexion = new conexionJDBC();
         try {
             conexion.conectar();
+            Cifrador n = new Cifrador();
             String sql = "select nickname,password from usuarios where nickname='" + request.getParameter("user") + "'";
             Statement stat = conexion.getConexion().createStatement();
             ResultSet query = stat.executeQuery(sql);
             if (query.next() != false) {
                 conexion.getConexion().close();
-                if (query.getString("nickname").replace(" ", "").equals(request.getParameter("user")) && query.getString("password").replace(" ", "").equals(request.getParameter("pass"))) {
-                    response.sendRedirect("pages/home.jsp?n="+request.getParameter("user")+"&u=User");
+                if (query.getString("nickname").replace(" ", "").equals(request.getParameter("user")) && query.getString("password").replace(" ", "").equals(n.hash(request.getParameter("pass")))) {
+                    response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(request.getParameter("user")) + "&u="+n.codificarB64("User"));
                 } else {
                     response.sendRedirect("index.html?alert=1");
                 }

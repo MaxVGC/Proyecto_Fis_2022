@@ -10,7 +10,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import datos.Cifrador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author carlo
@@ -30,9 +32,13 @@ public class prueb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("puta");
-            
+            /* TODO output your page here. You may use 
+            following sample code. */
+            Cifrador n= new Cifrador();
+            out.println(n.codificarB64("pkmn3612"));
+            //out.println(n.decodificarB64(n.codificarB64("pkmn3612")));
+        } catch (Exception ex) {
+            Logger.getLogger(prueb.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -4,8 +4,8 @@ import { API_KEY_GOOGLE } from '../js/keys.js';
 let FavBtn = document.querySelector("#btn_fav");
 let params = new URLSearchParams(location.search);
 
-var user = params.get('n');
-var type = params.get('u');
+var user = atob(params.get('n'));
+var type = atob(params.get('u'));
 var id = params.get('id');
 var lat;
 var lng;
@@ -65,8 +65,8 @@ function ObtenerLatLngId() {
 function ObtenerDatosClima(lat, lng, name) {
     $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function (data) {
         document.title = "Buscar - " + name;
-        document.getElementById('fav_link').href = "favoritos.jsp?n=" + user + "&u=" + type + "";
-        document.getElementById('home_link').href = "home.jsp?n=" + user + "&u=" + type + "";
+        document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+        document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
         document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
         document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
         document.getElementById('city').innerHTML = name + "";

@@ -33,19 +33,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                     <label class="form-label" for="formWhite">Usuario</label>
                                 </div>
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
-                                    <input type="password" name="pass" id="inputs" class="form-control" required/>
+                                    <input type="password" minlength="8" autocomplete="off" name="pass" id="inputs" class="form-control" required/>
                                     <label class="form-label" for="formWhite">Contraseña</label>
                                 </div>
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
-                                    <input type="text" name="name" id="inputs" class="form-control" required/>
+                                    <input type="text" autocomplete="off" name="name" id="inputs" class="form-control" required/>
                                     <label class="form-label" for="formWhite">Nombre</label>
                                 </div>
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
-                                    <input type="text" id="inputs" name="apell" class="form-control" required/>
+                                    <input type="text" autocomplete="off" id="inputs" name="apell" class="form-control" required/>
                                     <label class="form-label" for="formWhite">Apellido</label>
                                 </div>
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
-                                    <input type="text" name="email" id="inputs" class="form-control" required/>
+                                    <input type="text" autocomplete="off" name="email" id="inputs" class="form-control" required/>
                                     <label class="form-label" for="formWhite">Correo</label>
                                 </div>
                                 <button style="margin-top: 10%;" id="iniciar" type="submit" class="btn btn-primary">Registrarse</button>
