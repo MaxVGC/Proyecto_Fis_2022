@@ -139,17 +139,17 @@
                         <div class="col-md-4" style='display: flex;flex-direction: column;align-items: center;justify-content: center;height: 235.5px;'>
                             <span class='data_hst'></span>
                             <center><span class='dat_hst'>Porcentaje promedio de nubes</span></center>
-                            <i class='bx bxs-cloud dat_hst' style='font-size: 80px;display: none'></i>
+                            <i class='bx bxs-cloud dat_hst' style='font-size: 80px; '></i>
                         </div>
                         <div class="col-md-4" style='display: flex;flex-direction: column;align-items: center;justify-content: center;height: 235.5px;'>
                             <span class='data_hst'></span>
                             <center><span class='dat_hst'>Temperatura promedio</span></center>
-                            <i class='bx bxs-sun dat_hst' style='font-size: 80px;display: none'></i>
+                            <i class='bx bxs-sun dat_hst' style='font-size: 80px;'></i>
                         </div>
                         <div class="col-md-4" style='display: flex;flex-direction: column;align-items: center;justify-content: center;height: 235.5px;'>
                             <span class='data_hst'></span>
                             <center><span class='dat_hst'>Porcentaje promedio de humedad</span></center>
-                            <i class='dat_hst bx bxs-bullseye ' style='font-size: 80px;display: none'></i>
+                            <i class='dat_hst bx bxs-bullseye ' style='font-size: 80px'></i>
                         </div>
                     </div>
                 </div>

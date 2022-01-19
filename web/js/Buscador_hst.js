@@ -40,7 +40,7 @@ function updateValue(e) {
         });
     } else {
         if (aux == 1) {
-            //div.classList.toggle('open');
+            div.classList.toggle('open');
             aux = 0;
         }
     }

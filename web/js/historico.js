@@ -142,7 +142,6 @@ function ObtenerHora(dt) {
     const dateObject = new Date(milliseconds);
     let fecha = dateObject.toUTCString();
     return fecha.charAt(17) + fecha.charAt(18) + ":00";
-
 }
 
 function crear_grafico_linea(data) {
