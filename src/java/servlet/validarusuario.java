@@ -47,7 +47,7 @@ public class validarusuario extends HttpServlet {
             if (query.next() != false) {
                 conexion.getConexion().close();
                 if (query.getString("nickname").replace(" ", "").equals(request.getParameter("user")) && query.getString("password").replace(" ", "").equals(n.hash(request.getParameter("pass")))) {
-                    response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(request.getParameter("user")) + "&u="+n.codificarB64("User"));
+                    response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(request.getParameter("user")) + "&u="+n.codificarB64("Usuario"));
                 } else {
                     response.sendRedirect("index.html?alert=1");
                 }

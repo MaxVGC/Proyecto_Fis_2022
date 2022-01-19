@@ -1,0 +1,177 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 24/12/2021, 06:49:54 PM
+    Author     : carlo
+*/
+
+#div_principal{
+    width:100%;
+    height: calc( 100% - 100px );
+    background-color: red;
+}
+#div_input_hst{
+    width: 65%;
+}
+
+#list_hst{
+    display:none;
+}
+
+#list_hst.open{
+    display:block;
+}
+
+#card_hst{
+    display:none;
+}
+
+#card_hst.open{
+    display:block;
+}
+
+.list-group-item.activa{
+    z-index: 2;
+    color: red;
+    background-color: blue;
+    border-color: #333333;
+}
+.list-group-item-action:hover {
+    z-index: 1;
+    color: #616161;
+    text-decoration: none;
+    background-color: red;
+}
+
+#sugerencias{
+    position: absolute;
+    left: 250px;
+    width: 250px;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 1s;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+#sugerencias.open{
+    opacity: 1;
+}
+
+#sugerencias_hst{
+    position: absolute;
+    top: 60px;
+    width: 250px;
+    background-color: white;
+    display:none;
+    transition: opacity 1s;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+#sugerencias_hst.open{
+    display:block;
+}
+
+#fondoi{
+    padding-left: 20px;
+    padding-right:  20px;
+    background-color: #242424;
+}
+
+.row{
+    padding-top:  20px;
+}
+
+.card{
+    background-color: #333333;
+}
+
+.card-title{
+    color: white;
+}
+
+.card-text{
+    color:gray;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #242424;
+}
+
+body::-webkit-scrollbar-thumb {
+    width: 5px;
+    height: 5px;
+    top: 1px;
+    background-image: linear-gradient(0deg, rgba(255, 0, 0, 0.5), rgba(0, 0, 255, 0.5));
+    border-radius: 10px;
+}
+
+#input_hst{
+    background-color: #333333;
+    border-radius: 12px;
+    border:none;
+    height:50px;
+    color:white;
+}
+
+.ficha_hst{
+    padding: 0.5rem;
+    background-color: #333333;
+}
+
+#contain_hst{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+#chart_hst{
+    height: 300px;
+    width: 100px;
+}
+#icon_hst_g{
+    font-size: 50px;
+    color: #fff;
+    margin-right: 5%;
+}
+
+.image_hst{
+    width: 50px;
+    background-size: contain;
+    height: 50px;
+    margin-right: 5%;
+}
+
+#span_hst{
+    font-size: 1.5rem;
+    color:white;
+}
+
+.data_hst{
+    color:white;
+    font-size: 3rem;
+}
+
+.dat_hst{
+    display: none;
+}
+
+.dat_hst.open{
+    display: block;
+}
+
+.div_hst{
+    display:none;
+}
+
+.div_hst.open{
+    display: block;
+}

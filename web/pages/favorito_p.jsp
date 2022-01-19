@@ -54,16 +54,16 @@
                 <li>
                     <a href="#">
                         <i class='bx bx-user'></i>
-                        <span class="links_name">User</span>
+                        <span class="links_name">Perfil</span>
                     </a>
-                    <span class="tooltip">User</span>
+                    <span class="tooltip">Perfil</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="hst_link" href="#">
                         <i class='bx bx-pie-chart-alt-2'></i>
-                        <span class="links_name">Analytics</span>
+                        <span class="links_name">Historico</span>
                     </a>
-                    <span class="tooltip">Analytics</span>
+                    <span class="tooltip">Historico</span>
                 </li>
                 <li>
                     <a id="fav_link" href="#">
@@ -71,13 +71,6 @@
                         <span class="links_name">Favoritos</span>
                     </a>
                     <span class="tooltip">Favoritos</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bx-cog'></i>
-                        <span class="links_name">Setting</span>
-                    </a>
-                    <span class="tooltip">Setting</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">

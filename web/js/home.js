@@ -15,6 +15,7 @@ function ObtenerDatosClima() {
             $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function (data) {
                 document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
                 document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+                document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
                 document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
                 document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
                 document.getElementById('city').innerHTML = data.name + "";
@@ -141,11 +142,6 @@ function crear_grafico(data) {
                     backgroundColor: 'rgb(0,0,0)',
                     data: [Math.round(data.hourly[1].pop * 100), Math.round(data.hourly[2].pop * 100), Math.round(data.hourly[3].pop * 100), Math.round(data.hourly[4].pop * 100), Math.round(data.hourly[5].pop * 100)],
                 }]
-        },
-        options: {
-            scales: {
-
-            }
         }
     });
 }
