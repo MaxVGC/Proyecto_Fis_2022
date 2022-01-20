@@ -53,7 +53,7 @@
                     <span class="tooltip">Inicio</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="pf_link" href="#">
                         <i class='bx bx-user'></i>
                         <span class="links_name">Perfil</span>
                     </a>

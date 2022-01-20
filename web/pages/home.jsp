@@ -29,7 +29,7 @@
 
     </head>
 
-    <body style="background-color: black;">
+    <body style="background-color: #242424;">
         <div id="prueba" class="sidebar">
             <div class="logo-details">
                 <img class='icon' src="../img/icon.png" style="width: 15%;margin-right: 5%;margin-left:3%;">
@@ -52,7 +52,7 @@
                     <span class="tooltip">Inicio</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="pf_link" href="#">
                         <i class='bx bx-user'></i>
                         <span class="links_name">Perfil</span>
                     </a>
@@ -86,91 +86,139 @@
                 </li>
             </ul>
         </div>
-
-        <section id="fondoi" class="home-section" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg'); background-size: cover;">
-            <div style="height: 65vh;display: flex;flex-direction: row;align-items: flex-end;justify-content: flex-end;">
-                <div id="BarraHome">
-                    <div id="Dtemp" style="margin-left: 30px;">
-                        <span id="temp" style="color: white;font-size: 4rem;"></span>
-                    </div>
-                    <div id="icon" style="width: 100px;background-size: contain;"></div>
-                    <div style="display: flex;flex-direction: column;justify-content: center;">
-                        <div>
-                            <span id="city" style="font-size: 2rem;color: white;"></span>
-                            <span id="country" style="font-size: 1rem;color: gray;font-weight: bold;"></span>
+        <div class="col-md-12 big_container" id='fondoi' style="background-size: cover; background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');">
+            <div class="row" style="margin: 0;height: 65vh;flex-direction: row;align-items: flex-end;justify-content: flex-end;">
+                <div class="col-md-6 barra_container" style="padding:0;">
+                    <div class="row" style="margin:0;">
+                        <div class="col-md-6" style="padding:0;">
+                            <div class="row" style="margin:0;height: 100%">
+                                <div id="Dtemp" >
+                                    <span id="temp" style="color: white;font-size: 4rem;"></span>
+                                    <div id="icon" style="width: 100px;height:100px;background-size: contain;"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <span id="inf" style="font-size: 1rem;color: white;"></span>
+
+                        <div class="col-md-6" style="padding:0;">
+                            <div class="row" style="margin:12px;">
+                                <center>
+                                    <div>
+                                        <span id="city" style="font-size: 2rem;color: white;"></span>
+                                        <span id="country" style="font-size: 1rem;color: gray;font-weight: bold;"></span>
+                                    </div>
+                                </center>
+                                <center>
+                                    <div>
+                                        <span id="inf" style="font-size: 1rem;color: white;"></span>
+                                    </div>
+                                </center>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="display: flex;">
-                <div id="" style="height: 35vh;width: 50%;background-color: #242424;display: flex;align-items: center;">
-                    <div style="display: inline-flex;flex-direction: column;margin-left: 20px;">
-                        <div style="display: inline-block;">
-                            <div id="cont">
-                                <div id="ext">
-                                    <div id="rot1">
-                                        <div id="int1"></div>
+            <div class="row" style="margin: 0;height: 35vh">
+                <div class="col-md-6" style="padding:0;background-color: #242424;">
+                    <div class="row" style="margin: 0;">
+                        <div class="col-md-3" style="padding:0;">
+                            <div class="row" style="margin: 0;height: 50%" >
+                                <div class="col-md-12" style="padding: 0;" >
+                                    <div class="row" style="margin: 20px;">
+                                        <div style="display: inline-block;padding: 0;">
+                                            <center><div id="cont">
+                                                    <div id="ext">
+                                                        <div id="rot1">
+                                                            <div id="int1"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="shape" style="left: 0px">
+                                                        <center><span id="perc1"></span></center>
+                                                    </div>
+                                                </div></center>
+                                            <center><span style="color: white;font-size: 0.9rem;">Nubosidad</span></center>
+                                        </div>
                                     </div>
                                 </div>
-                                <div id="shape">
-                                    <center><span id="perc1"></span></center>
-                                </div>
                             </div>
-                            <center><span style="color: white;font-size: 0.9rem;">Nubosidad</span></center>
-                        </div>
-                        <div style="display: inline-block;margin-top: 20px;">
-                            <div id="cont">
-                                <div id="ext">
-                                    <div id="rot2">
-                                        <div id="int2"></div>
+                            <div class="row" style="margin: 0;height: 50%" >
+                                <div class="col-md-12" style="padding: 0;" >
+                                    <div class="row" style="margin: 20px;">
+                                        <div style="display: inline-block;padding: 0;">
+                                            <center>
+                                                <div id="cont">
+                                                    <div id="ext">
+                                                        <div id="rot2">
+                                                            <div id="int2"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="shape" style="left: 0px">
+                                                        <center><span id="perc2"></span></center>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                            <center><span style="color: white;font-size: 0.9rem;">Humedad</span></center>
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="shape">
-                                    <center><span id="perc2"></span></center>
+
                                 </div>
                             </div>
-                            <center><span style="color: white;font-size: 0.9rem;">Humedad</span></center>
                         </div>
-                    </div>
-                    <div id="datos" style=" height: 170px;margin-left: 30px;margin-right: 30px; display: flex;flex-direction: column;justify-content: center">
-                        <div id="dcontain">
-                            <i class='bx bxs-cloud-rain'></i>
-                            <span id="metricas">Prob. de precipitaciones:</span>
-                            <span id="pdll" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                        <div class="col-md-5" style="padding:0;">
+                            <div class="row" style="margin: 0;height: 20%">
+                                <div id="dcontain" style="display: flex;align-items: center;justify-content:center">
+                                    <i id="icon_data" class='bx bxs-cloud-rain'></i>
+                                    <span id="metricas">Prob. de precipitaciones:</span>
+                                    <span id="pdll" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 0;height: 20%">
+                                <div id="dcontain" style="display: flex;align-items: center;justify-content:center" >
+                                    <i id="icon_data" class='bx bxs-analyse'></i>
+                                    <span id="metricas">Presi&oacuten:</span>
+                                    <span id="presion" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 0;height: 20%">
+                                <div id="dcontain" style="display: flex;align-items: center;justify-content:center">
+                                    <i id="icon_data" class='bx bx-wind'></i>
+                                    <span id="metricas">Velocidad del viento:</span>
+                                    <span id="velv" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 0;height: 20%">
+                                <div id="dcontain" style="display: flex;align-items: center;justify-content:center">
+                                    <i id="icon_data" class='bx bxs-sun'></i>
+                                    <span id="metricas">Sensaci&oacuten termica:</span>
+                                    <span id="st" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin: 0;height: 20%">
+                                <div id="dcontain" style="display: flex;align-items: center;justify-content:center">
+                                    <i id="icon_data" class='bx bxs-heart-circle'></i>
+                                    <span id="metricas">Calidad del aire:</span>
+                                    <span id="aqi" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                                </div>
+                            </div>
                         </div>
-                        <div id="dcontain">
-                            <i class='bx bxs-analyse'></i>
-                            <span id="metricas">Presi&oacuten:</span>
-                            <span id="presion" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
+                        <div class="col-md-4" style="padding:0;">
+                            <div class="row" style="margin: 0;height: 100%">
+                                <div style="display: flex;align-items: center;justify-content:center;margin-top: 10px">
+                                    <canvas id="myChart" width="230" height="200"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div id="dcontain">
-                            <i class='bx bx-wind'></i>
-                            <span id="metricas">Velocidad del viento:</span>
-                            <span id="velv" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
-                        </div>
-                        <div id="dcontain">
-                            <i class='bx bxs-sun'></i>
-                            <span id="metricas">Sensaci&oacuten termica:</span>
-                            <span id="st" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
-                        </div>
-                        <div id="dcontain">
-                            <i class='bx bxs-heart-circle'></i>
-                            <span id="metricas">Calidad del aire:</span>
-                            <span id="aqi" style="margin-left: 5px;color: white;font-size: 0.8rem;"></span>
-                        </div>
-                    </div>
-                    <div id="Gfc_Hora">
-                        <canvas id="myChart" width="230" height="200"></canvas>
                     </div>
                 </div>
-                <div id="pronostico" style="height: 35vh;width: 50%;background-color: #242424;"></div>
+                <div class="col-md-6" style="padding:0;background-color: #242424;">
+                    <div class="row" style="margin: 0;height: 10%">
+                        <center><span style="color:gray">Pronostico</span></center>
+                    </div>
+                    <div class="row" style="margin: 0;height: 90%">
+                        <div id="pronostico" style="background-color: #242424;"></div>
+                    </div>
+                </div>
             </div>
-
-        </section>
-
+        </div>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let closeBtn = document.querySelector("#btn");
@@ -180,13 +228,13 @@
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-               // b_sugerencias();
+                // b_sugerencias();
             });
 
             searchBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-               // b_sugerencias();
+                // b_sugerencias();
             });
 
             function menuBtnChange() {
@@ -198,7 +246,7 @@
             }
 
             function b_sugerencias() {
-                
+
                 if (document.querySelector("#sugerencias.open")) {
                     document.getElementById("sugerencias").className = "";
                 }

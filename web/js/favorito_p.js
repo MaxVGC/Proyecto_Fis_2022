@@ -44,13 +44,14 @@ function ObtenerDatosClima() {
         document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
         document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
         document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+        document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+
         document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
         document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
         document.getElementById('city').innerHTML = city_name[0] + "";
         document.getElementById('fondoi').style.backgroundImage = "url('https://source.unsplash.com/1288x665/?" + (data.name) + "')";
         document.getElementById('country').innerHTML = data.sys.country + "";
         document.getElementById('inf').innerHTML = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1) + "";
-        document.getElementById("BarraHome").style.width = (document.getElementById("BarraHome").clientWidth + 30) + "px";
         document.getElementById('perc1').innerHTML = data.clouds.all + "%";
         document.getElementById('perc2').innerHTML = data.main.humidity + "%";
         document.getElementById('presion').innerHTML = data.main.pressure + "hPa";

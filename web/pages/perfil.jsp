@@ -8,14 +8,15 @@
 <html lang="es" dir="ltr">
 
     <head>
-        <title>Favoritos</title>
+        <title>Perfil</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        
+
         <script type="module" src="../js/Buscador.js" defer></script>
-        <script type="module" src="../js/favoritos.js" defer></script>
+        <script type="module" src="../js/perfil.js" defer></script>
+
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
@@ -23,13 +24,13 @@
 
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
-        <link rel="stylesheet" href="../css/favoritos.css">
+        <link rel="stylesheet" href="../css/perfil.css">
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
     </head>
 
-    <body style="background-color: black;">
+    <body style="background-color: #242424;">
         <div id="prueba" class="sidebar">
             <div class="logo-details">
                 <img class='icon' src="../img/icon.png" style="width: 15%;margin-right: 5%;margin-left:3%;">
@@ -87,9 +88,9 @@
             </ul>
         </div>
 
-        <section id="fondoi" class="home-section" >
-            
-        </section>
+        <div class="col-md-12 big_container" id='fondoi'>
+
+        </div>
 
         <script>
             let sidebar = document.querySelector(".sidebar");
