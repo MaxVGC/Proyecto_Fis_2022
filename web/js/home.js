@@ -22,7 +22,6 @@ function ObtenerDatosClima() {
                 document.getElementById('fondoi').style.backgroundImage = "url('https://source.unsplash.com/1288x665/?" + (data.name) + "')"
                 document.getElementById('country').innerHTML = data.sys.country + "";
                 document.getElementById('inf').innerHTML = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1) + "";
-                document.getElementById("BarraHome").style.width = (document.getElementById("BarraHome").clientWidth + 30) + "px";
                 document.getElementById('perc1').innerHTML = data.clouds.all + "%";
                 document.getElementById('perc2').innerHTML = data.main.humidity + "%";
                 document.getElementById('presion').innerHTML = data.main.pressure + "hPa";
