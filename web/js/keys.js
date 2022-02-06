@@ -1,6 +1,6 @@
 //API_Keys
 
-const API_KEY_GOOGLE = "AIzaSyCSvCi-oJw7_VDj-zkrzkZCx4l1iGeH2Eg";
+const API_KEY_GOOGLE = "AIzaSyBDFNzlh_-nPNwIs898fi9mV0NVBn6ixlI";
 const API_KEY_OpenWeather = "6a49928cbcaf43a7db27eff5bc61182f";
 
 //Exports

@@ -17,8 +17,8 @@ function Construir() {
 function MostrarFavoritos() {
     fetch('../mostrarfavoritos?user=' + user)
             .then((res) => res.json()).then(data => {
+                console.log(data);
         ConstruirCards(data, data.favoritos.length);
-
     });
 }
 

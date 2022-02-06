@@ -15,6 +15,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <script type="module" src="../js/historico.js" defer></script>
         <script type="module" src="../js/Buscador_hst.js" defer></script>
+        <script type="module" src="../js/Buscador.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
