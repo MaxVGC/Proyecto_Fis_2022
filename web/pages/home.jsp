@@ -9,7 +9,7 @@
 
     <head>
         <title>Inicio</title>
-
+        <meta name="description" content="Ponga su descripción aquí.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
