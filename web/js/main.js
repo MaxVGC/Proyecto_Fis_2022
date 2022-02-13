@@ -32,7 +32,7 @@ function ciudad() {
 function traernombreciudad(ciudad) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-            fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + position.coords.latitude + "," + position.coords.longitude + "&radius=5000&language=es&keyword=" + ciudad + "&key=" + API_KEY_GOOGLE)
+            fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + position.coords.latitude + "," + position.coords.longitude + "&radius=5000&language=es&keyword=" + ciudad + "&key=" + API_KEY_GOOGLE)
                 .then((res) => res.json()).then(data => {
                     traerphotoreference(data);
                 });
