@@ -89,7 +89,7 @@ function ObtenerDatosClima(lat, lng, name) {
 function ObtenerCalidadDelAire(lat, lng) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            $.get("http://api.openweathermap.org/data/2.5/air_pollution?lat=" + lat + "&lon=" + lng + "&lang=es&appid=" + API_KEY_OpenWeather, function (data) {
+            $.get("https://api.openweathermap.org/data/2.5/air_pollution?lat=" + lat + "&lon=" + lng + "&lang=es&appid=" + API_KEY_OpenWeather, function (data) {
                 switch (data.list[0].main.aqi) {
                     case 1:
                         document.getElementById('aqi').innerHTML = "Bueno";

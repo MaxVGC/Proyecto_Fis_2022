@@ -38,7 +38,7 @@ function ObtenerDatosClima() {
 function ObtenerCalidadDelAire() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            $.get("http://api.openweathermap.org/data/2.5/air_pollution?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&appid=" + API_KEY_OpenWeather, function (data) {
+            $.get("https://api.openweathermap.org/data/2.5/air_pollution?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&lang=es&appid=" + API_KEY_OpenWeather, function (data) {
                 switch (data.list[0].main.aqi) {
                     case 1:
                         document.getElementById('aqi').innerHTML = "Bueno";

@@ -2,6 +2,7 @@
 <html lang="en">
 
     <head>
+        <script type="module" src="js/main.js" ></script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -13,8 +14,7 @@
         <link rel="stylesheet" href="css/main.css" />
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-        <script type="text/javascript" src="js/mdb.min.js"></script>
-        <script type="module" src="js/main.js" defer></script>
+        <script type="text/javascript" src="js/mdb.min.js"></script>        
     </head>
 
     <body>
@@ -46,7 +46,7 @@
                                     <span style="color:white;">Usuario</span>
                                     <input autocomplete="off" type="text" name="user" id="inputs" class="form-control" required/>
                                 </div>
-                                
+
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
                                     <span style="color:white;">Contraseña</span><center></center>
                                     <input autocomplete="off" type="password" name="pass" id="inputs" class="form-control" required/>
@@ -55,7 +55,7 @@
                             </form>
                             <div style="margin-top: 10%;">
                                 <span>¿No tienes una cuenta?</span>
-                                <a href="/WheaterApp/pages/registro.jsp">Registrate</a>
+                                <a href="pages/registro.jsp">Registrate</a>
                             </div>
                         </div>
                         <div style="height: 10%;display: flex;align-items: center;justify-content: center;flex-direction: row;">
@@ -67,8 +67,6 @@
                 </div>
             </div>
         </div>
-
-
         <script type="text/javascript">
             var height = window.innerHeight;
             var ciudad;
@@ -87,8 +85,12 @@
             function redimensionar() {
                 var height = window.innerHeight;
                 document.getElementById("login").style.height = height + "px";
+                document.write();
+
             }
+
             document.getElementById("login").style.height = height + "px";
+
             $(document).ready(() => {
                 alertt();
                 $(window).on('resize', _.debounce(redimensionar, 100));

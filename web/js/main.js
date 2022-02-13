@@ -3,6 +3,7 @@ import { API_KEY_OpenWeather } from '../js/keys.js';
 
 ciudad();
 obtenerclima()
+console.log("entre");
 
 function Lugares() {
     if (navigator.geolocation) {
@@ -16,6 +17,7 @@ function Lugares() {
 }
 
 function ciudad() {
+    console.log("entre a ciudad")
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + API_KEY_OpenWeather)
