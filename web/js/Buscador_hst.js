@@ -25,7 +25,7 @@ function updateValue(e) {
             div.classList.toggle('open');
             aux = 1;
         }
-        fetch("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + e.srcElement.value + "&types=%28cities%29&key=" + API_KEY_GOOGLE)
+        fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + e.srcElement.value + "&types=%28cities%29&key=" + API_KEY_GOOGLE)
                 .then((res) => res.json()).then(data => {
             var aux = '';
             for (var i = 0; i <= (data.predictions.length - 1); i++) {
@@ -97,7 +97,7 @@ function GenerarLista(ele, div, div2) {
 }
 
 function ObtenerLatLngId(id) {
-    fetch("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
+    fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
             .then((res) => res.json()).then(data => {
         var lat = data.result.geometry.location.lat;
         var lng = data.result.geometry.location.lng;
