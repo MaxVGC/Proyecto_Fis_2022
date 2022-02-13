@@ -45,9 +45,9 @@ function ValidarFavorito(name) {
         }
     });
 }
-
+//s
 function ObtenerLatLngId() {
-    fetch("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
+    fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
             .then((res) => res.json()).then(data => {
         var lat = data.result.geometry.location.lat;
         var lng = data.result.geometry.location.lng;
