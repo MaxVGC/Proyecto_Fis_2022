@@ -25,12 +25,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     <body>
         <div class="container-fluid">
             <div class="row width-100">
-                <div class="col-md-4 register-div">
+                <div class="col-md-4 register-div" style="padding-left: 30px; padding-right: 30px;">
                     <form action="../registrarusuario" method="POST" style="display: contents;">
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="../" style="color:#b0b0b0">
-                                   <i style="font-size: 30px;"class='bx bx-left-arrow-alt'></i>
+                                    <i style="font-size: 30px;"class='bx bx-left-arrow-alt'></i>
                                 </a>                               
                                 <h1 style="color:white;display: inline">Registrate!</h1>
                             </div>     
@@ -91,13 +91,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         <div class="row">
                             <div class="col-md-12" style="display: flex;justify-content: center">
                                 <div style="width:100%;display: flex;justify-content: center">
-                                    <button style="margin-top: 10%;" id="btn_submit" type="submit" class="btn btn-primary" disabled>Registrarse</button>
+                                    <button style="margin-top: 10%;" id="btn_submit" type="submit" class="btn btn-primary btn-grad" disabled>Registrarse</button>
                                 </div>
                             </div> 
                         </div>
                     </form>
                 </div>
-                <div class="col-md-8 mockup">
+                <div class="col-md-8 mockup" style="padding:0px;display: flex;align-items: flex-end;flex-direction: row-reverse;">
+                    <div style='background-color: #242424; width: fit-content;margin-bottom: 20px;    -webkit-border-radius: 30px 0px 0px 30px;'>
+                        <img src="../img/icon.png" alt="Icon" width='50px' height="50px" style='margin-left: 20px'>
+                        <span style="margin: 1px 18px 1px 20px;color:white;">Weather App</span>
+                    </div>
                 </div>
             </div>
         </div>
