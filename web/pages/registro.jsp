@@ -19,6 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script async src="https://www.google.com/recaptcha/api.js"></script>
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     </head>
 
     <body>
@@ -28,7 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <form action="../registrarusuario" method="POST" style="display: contents;">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 style="color:white">Registrate!</h1>
+                                <a href="../" style="color:#b0b0b0">
+                                   <i style="font-size: 30px;"class='bx bx-left-arrow-alt'></i>
+                                </a>                               
+                                <h1 style="color:white;display: inline">Registrate!</h1>
                             </div>     
                         </div>
                         <div class="row">
