@@ -55,8 +55,7 @@ public class registrarusuario extends HttpServlet {
             PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
             pst.execute();
             conexion.getConexion().close();
-            response.sendRedirect("index.html");
-
+            response.sendRedirect("index.html?alert=2");
         } catch (SQLException ex) {
             out.println(ex);
             try {

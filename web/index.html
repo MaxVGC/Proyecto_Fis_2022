@@ -15,9 +15,15 @@
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="js/mdb.min.js"></script> 
         <script type="module" src="js/main.js" defer></script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
     </head>
 
     <body>
+        <div id="g_id_onload"
+             data-client_id="409432365804-clqlkldi21jvroqagm9fh1uklcjk2gub.apps.googleusercontent.com"
+             data-auto_prompt="false" data-auto-select="false"
+             data-callback="handleCredentialResponse">
+        </div>
         <div class="container-fluid" style="padding: 0%;">
             <div id="bg-image" class="bg-image" style="-webkit-transition:linear;-webkit-transition-duration: 0.5s;background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');height: 100vh;">
                 <div class="row">
@@ -51,7 +57,17 @@
                                     <span style="color:white;">Contraseña</span><center></center>
                                     <input autocomplete="off" type="password" name="pass" id="inputs" class="form-control" required/>
                                 </div>
-                                <button style="margin-top: 10%;" id="iniciar" type="submit" class="btn btn-primary">Ingresar</button>
+                                <div style="margin-top: 10%;display: flex;align-items: center;justify-content: center;">
+                                    <button  id="iniciar" type="submit" style="margin-right: 10%;" class="btn btn-primary">Ingresar</button>
+                                    <div class="g_id_signin"
+                                         data-type="icon"
+                                         data-size="medium"
+                                         data-theme="outline"
+                                         data-text="sign_in_with"
+                                         data-shape="circle"
+                                         data-logo_alignment="left">
+                                    </div> 
+                                </div>
                             </form>
                             <div style="margin-top: 10%;">
                                 <span>¿No tienes una cuenta?</span>
@@ -70,8 +86,7 @@
         <script type="text/javascript">
             var height = window.innerHeight;
             var ciudad;
-
-
+            
             function alertt() {
                 let params = new URLSearchParams(location.search);
                 var contract = params.get('alert');
@@ -79,6 +94,8 @@
                     alert('El Usuario ingresado no se encuentra registrado');
                 } else if (contract == 1) {
                     alert('Usuario o contraseña incorrectos');
+                }else if (contract == 2) {
+                    alert('Usuario registrado correctamente');
                 }
             }
 

@@ -14,71 +14,97 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <link rel="stylesheet" href="../css/mdb.min.css" />
-        <link rel="stylesheet" href="../css/main.css" />
+        <link rel="stylesheet" href="../css/registro.css" />
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
+        <script async src="https://www.google.com/recaptcha/api.js"></script>
     </head>
 
     <body>
-        <div class="container-fluid" style="padding: 0%;">
-            <div id="bg-image" class="bg-image" style="height: 100vh;">
-                <div class="row">
-                    <div id="formulario" style="background-color: #333333;padding: 0%;" class="col-md-8">
-                        <div style="width: 70%;height: 100%;display: inline-block;float: left;">
-                            <div style="width: 100%;height: 100%;display: flex;align-content: center;flex-direction: column;align-items: center;justify-content: center;">
-                                <form action="../registrarusuario" method="POST" style="display: contents;">
-                                    <div class="form-outline form-white" style="width: 70%;margin-top: 6%;">
-                                        <span style="color:white;">Usuario</span><center></center>
-                                        <input type="text" autocomplete="off" name="user" id="inputs" class="form-control" required/>
+        <div class="container-fluid">
+            <div class="row width-100">
+                <div class="col-md-4 register-div">
+                    <form action="../registrarusuario" method="POST" style="display: contents;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 style="color:white">Registrate!</h1>
+                            </div>     
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-outline form-white" style="width: 100%;margin-top: 6%;">
+                                    <span style="color:white;">Usuario</span>
+                                    <div style="width:100%;display: flex;justify-content: center">
+                                        <input  type="text" autocomplete="off" name="user" class="input-custom" required/>
                                     </div>
-                                    <div class="form-outline form-white" style="width: 70%;margin-top: 6%;">
-                                        <span style="color:white;">Contraseña</span><center></center>
-                                        <input type="password" minlength="8" autocomplete="off" name="pass" id="inputs" class="form-control" required/>
-                                    </div>
-                                    <div class="form-outline form-white" style="width: 70%;margin-top: 6%;">
-                                        <span style="color:white;">Nombre</span><center></center>
-                                        <input type="text" autocomplete="off" name="name" id="inputs" class="form-control" required/>
-                                    </div>
-                                    <div class="form-outline form-white" style="width: 70%;margin-top: 6%;">
-                                        <span style="color:white;">Apellido</span><center></center>
-                                        <input type="text" autocomplete="off" id="inputs" name="apell" class="form-control" required/>
-                                    </div>
-                                    <div class="form-outline form-white" style="width: 70%;margin-top: 6%;">
-                                        <span style="color:white;">Correo</span><center></center>
-                                        <input type="text" autocomplete="off" name="email" id="inputs" class="form-control" required/>
-                                    </div>
-                                    <button style="margin-top: 10%;" id="iniciar" type="submit" class="btn btn-primary">Registrarse</button>
-                                </form>
+                                </div> 
                             </div>
                         </div>
-                        <div style="width: 29%;height: 100%; display: inline-block;background-image:url(../img/info_register.png)"></div>
-                    </div>
-                    <div id="lateralimage" style="padding: 0%;" class="col-md-4">
-                        <div style=" background-image: url('https://source.unsplash.com/464x665/?mountain');height: 100%;">
-                            <div style="position: relative;height: 10%;left: 63%;">
-                                <img src="../img/icon.png" style="max-width: 10%;max-height: 66%;">
-                                <span style="font-size: 1rem;color: black;font-weight: bold;margin-left: 3%;">Heart Cloud</span>
-                            </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-outline form-white" style="width: 100%;margin-top: 6%;">
+                                    <span style="color:white;">Nombre</span><center></center>
+                                    <div style="width:100%;display: flex;justify-content: center">
+                                        <input  type="text" autocomplete="off" name="name" class="input-custom" required/>
+                                    </div>
+                                </div>
+                            </div>   
+                            <div class="col-md-6">
+                                <div class="form-outline form-white" style="width: 100%;margin-top: 6%;">
+                                    <span style="color:white;">Apellido</span><center></center>
+                                    <div style="width:100%;display: flex;justify-content: center">
+                                        <input  type="text" autocomplete="off" name="apell" class="input-custom" required/>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-outline form-white" style="width: 100%;margin-top: 4%;">
+                                    <span style="color:white;">Correo</span>
+                                    <div style="width:100%;display: flex;justify-content: center">
+                                        <input  type="email" autocomplete="off" name="email" class="input-custom" required/>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-outline form-white" style="width: 100%;margin-top: 4%;">
+                                    <span style="color:white;">Contraseña</span><center></center>
+                                    <div style="width:100%;display: flex;justify-content: center">
+                                        <input type="password" minlength="8" autocomplete="off" name="pass" class="input-custom" required/>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="display: flex;justify-content: center">
+                                <div style="display: block;margin-top: 10%;" class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LeYVoMeAAAAAFbmkLD42RpfyjPDHMTQZr48VANS" data-theme="dark"></div>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="display: flex;justify-content: center">
+                                <div style="width:100%;display: flex;justify-content: center">
+                                    <button style="margin-top: 10%;" id="btn_submit" type="submit" class="btn btn-primary" disabled>Registrarse</button>
+                                </div>
+                            </div> 
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-8 mockup">
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            var height = window.innerHeight;
-
-            function redimensionar() {
-                var height = window.innerHeight;
-                document.getElementById("lateralimage").style.height = height + "px";
-                document.getElementById("formulario").style.height = height + "px";
+        <script>
+            function recaptcha_callback() {
+                var axx = grecaptcha.getResponse();
+                if (axx.length !== 0) {
+                    var aux = document.querySelector('#btn_submit');
+                    aux.removeAttribute('disabled');
+                }
             }
-            document.getElementById("lateralimage").style.height = height + "px";
-            document.getElementById("formulario").style.height = height + "px";
-
-            $(document).ready(() => {
-                $(window).on('resize', _.debounce(redimensionar, 100));
-            });
         </script>
     </body>
 
