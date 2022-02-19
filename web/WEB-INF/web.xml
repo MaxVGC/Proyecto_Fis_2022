@@ -32,6 +32,10 @@
         <servlet-name>mostrarfavoritos</servlet-name>
         <servlet-class>servlet.mostrarfavoritos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>informacionusuario</servlet-name>
+        <servlet-class>servlet.informacionusuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
         <url-pattern>/controlador</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>mostrarfavoritos</servlet-name>
         <url-pattern>/mostrarfavoritos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>informacionusuario</servlet-name>
+        <url-pattern>/informacionusuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

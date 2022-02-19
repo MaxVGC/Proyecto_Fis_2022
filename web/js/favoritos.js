@@ -14,10 +14,10 @@ function Construir() {
     document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
     document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
 }
+
 function MostrarFavoritos() {
     fetch('../mostrarfavoritos?user=' + user)
             .then((res) => res.json()).then(data => {
-                console.log(data);
         ConstruirCards(data, data.favoritos.length);
     });
 }

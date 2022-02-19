@@ -13,13 +13,120 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     width: 250px;
     background-color: white;
     opacity: 1;
-    transition: opacity 1s; 
+    transition: opacity 1s;
     border-radius: 10px;
 }
 
-.big_container{
+#sugerencias.open{
+    opacity: 1;
+}
+
+#img_favorito{
+    height: 250px;
+}
+
+#img_perfil_barra{
+    background-color: #333333;
+    width: 150px;
+    height: 150px;
+    margin-left: 40px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: +1;
+}
+
+#img_perfil_barra #img_perfil{
+    width: 130px;
+    height: 130px;
+    border-radius: 75px;
+}
+
+#datos_perfil{
+    background-color: #333333;
+    padding-left: 25px;
+    height: 100px;
+    margin-left: -20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 25px;
+    max-width: 430px;
+    overflow-x: hidden;
+    border-radius: 0px 100px 100px 0px;
+}
+
+#perfil-barra{
+    display: flex;
+    align-items: center;
+    padding:0;
+}
+
+#datos_ubicacion{
+    padding:0;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+}
+
+#ubicacion_img{
+    background-color: #333333;
+    display: flex;
+    align-items: center;
     position: relative;
-    width: calc(100% - 78px);
-    min-height: 100vh;
-    left: 78px;
+    right: 10px;
+    bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    #datos_ubicacion{
+        align-items: unset;
+        flex-direction: unset;
+        justify-content: center;
+    }
+    #ubicacion_img{
+        right: 0px;
+        bottom: 0px;
+    }
+    #datos_perfil{
+        padding-left: 25px;
+        margin-left: 0;
+        border-radius: 0px 0px 0px 0px;
+        position: relative;
+        bottom: 25px;
+        max-width: 202px;
+        overflow-x: auto;
+    }
+
+    #perfil-barra{
+        flex-direction: column;
+        align-items: center;
+        padding-top: 15px;
+    }
+
+    #img_perfil_barra{
+        background-color: #333333;
+        width: 150px;
+        height: 150px;
+        margin-left: 0px;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: +1;
+    }
+
+    #img_favorito{
+        height: unset;
+        padding-bottom: 15px;
+    }
+}
+
+
+#datos_perfil_nombre{
+    display: flex;
 }

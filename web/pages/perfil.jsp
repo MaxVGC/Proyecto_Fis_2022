@@ -88,8 +88,27 @@
             </ul>
         </div>
 
-        <div class="col-md-12 big_container" id='fondoi'>
+        <div class="home-section container-fluid" style="margin:0;background-color: #242424" id='fondoi'>
+            <div id="img_favorito" class="row" style="background-size: cover;">
+                <div class="col-md-6" id="perfil-barra">
+                    <div id="img_perfil_barra">
+                        <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
+                    </div>
+                    <div id="datos_perfil">
+                        <center><span id="username-barra" style="color: white;font-size: 27px;"></span></center>
+                        <center><span id="nombre-barra" style="color:gray"></span></center>
+                    </div>
+                </div>
+                <div class="col-md-6" id="datos_ubicacion">
+                    <div id="ubicacion_img">
+                        <i class='bx bx-map'></i>
+                        <center><span id="ubicacion_barra" style="color:white; margin-left: 10px;"></span></center>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="height: 250px">
 
+            </div>
         </div>
 
         <script>
