@@ -86,7 +86,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-12 big_container" id='fondoi' style="background-size: cover; background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');">
+        <div class="col-md-12 big_container" id='fondoi' style="background-size: cover; overflow-y: hidden; background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');">
             <div class="row" style="margin: 0;height: 65vh;flex-direction: row;align-items: flex-end;justify-content: flex-end;">
                 <div class="col-md-6 barra_container" style="padding:0;">
                     <div class="row" style="margin:0;">

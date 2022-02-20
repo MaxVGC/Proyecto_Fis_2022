@@ -5,9 +5,9 @@ var user = atob(params.get('n'));
 var type = atob(params.get('u'));
 var img=atob(params.get('i'));
 
-ObtenerDatosClima();
-pronostico();
-ObtenerCalidadDelAire();
+//ObtenerDatosClima();
+//pronostico();
+//ObtenerCalidadDelAire();
 Construir();
 
 function Construir() {

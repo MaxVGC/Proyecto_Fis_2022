@@ -67,3 +67,13 @@ body::-webkit-scrollbar-thumb {
     border-radius: 10px;
 }
 
+@media (max-width: 530px) {
+    #sugerencias{
+        position: absolute;
+        background-color: white;
+        z-index: 1;
+        top:65px;
+        left: 0px;
+        width: 220px;
+    }
+}

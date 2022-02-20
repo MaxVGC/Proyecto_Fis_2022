@@ -49,9 +49,9 @@ public class informacionusuario extends HttpServlet {
 
         while (f.next()) {
             JSONObject innerObj = new JSONObject();
-            innerObj.put("nombre", f.getString("nombre").replace(" ", ""));
-            innerObj.put("apellido", f.getString("apellido").replace(" ", ""));
-            innerObj.put("correo", f.getString("correo").replace(" ", ""));
+            innerObj.put("nombre", f.getString("nombre"));
+            innerObj.put("apellido", f.getString("apellido"));
+            innerObj.put("correo", f.getString("correo"));
             list.add(innerObj);
         }
         obj.put("datos", list);
