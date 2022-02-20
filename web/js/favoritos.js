@@ -3,16 +3,21 @@ var divs = '';
 let params = new URLSearchParams(location.search);
 var user = atob(params.get('n'));
 var type = atob(params.get('u'));
+var img = atob(params.get('i'));
 
 Construir();
-name();
 MostrarFavoritos();
 
+
+
 function Construir() {
-    document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-    document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-    document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-    document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
+    document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('username').innerHTML = user;
+    document.getElementById('role').innerHTML = type;
+    document.getElementById('img_perfil').src = img;
 }
 
 function MostrarFavoritos() {
@@ -20,11 +25,6 @@ function MostrarFavoritos() {
             .then((res) => res.json()).then(data => {
         ConstruirCards(data, data.favoritos.length);
     });
-}
-
-function name() {
-    document.getElementById('username').innerHTML = user;
-    document.getElementById('role').innerHTML = type;
 }
 
 function ConstruirCards(data, lng) {
@@ -48,6 +48,6 @@ function ConstruirRow(id) {
 function ConstruirCard(row, id, data) {
     let city = data.favoritos[id].ciudad;
     const aux = city.split(",");
-    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4" style="margin-top:20px;"><a href="favorito_p.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + btoa(user) + '&u=' + btoa(type) + '"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
+    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4" style="margin-top:20px;"><a href="favorito_p.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + btoa(user) + '&u=' + btoa(type) + '&i=' + btoa(img) + '"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
     document.getElementById('img_card_' + id).src = "https://source.unsplash.com/1288x665/?" + (aux[0]) + "";
 }

@@ -10,16 +10,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/registro.css" />
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script async src="https://www.google.com/recaptcha/api.js"></script>
-        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <script type="module" src="../js/registro.js" defer></script>
+
     </head>
 
     <body>
@@ -40,7 +44,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                 <div class="form-outline form-white" style="width: 100%;margin-top: 6%;">
                                     <span style="color:white;">Usuario</span>
                                     <div style="width:100%;display: flex;justify-content: center">
-                                        <input  type="text" autocomplete="off" name="user" class="input-custom" required/>
+                                        <input type="text" autocomplete="off" name="user" maxlength="10" class="input-custom" required/>
+                                        <input style="display:none" type="text" autocomplete="off" class="input-custom" name="rol" value="1"/>
+                                        <input style="display:none" type="text" autocomplete="off" class="input-custom" name="image" value=""/>
                                     </div>
                                 </div> 
                             </div>
@@ -79,6 +85,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                     <span style="color:white;">Contraseña</span><center></center>
                                     <div style="width:100%;display: flex;justify-content: center">
                                         <input type="password" minlength="8" autocomplete="off" name="pass" class="input-custom" required/>
+                                        <input style="display:none" type="text" autocomplete="off" class="input-custom" name="URL" value=""/>
+                                        <input style="display:none" type="text" autocomplete="off" class="input-custom" name="id_google" value=""/>
                                     </div>
                                 </div>
                             </div> 
@@ -113,6 +121,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     aux.removeAttribute('disabled');
                 }
             }
+
+            $(document).ready(() => {
+                let params = new URLSearchParams(location.search);
+                var contract = params.get('alert');
+                if (contract == 0) {
+                    alert('El usuario ingresado ya se encuentra registrado');
+                }
+            });
+
         </script>
     </body>
 

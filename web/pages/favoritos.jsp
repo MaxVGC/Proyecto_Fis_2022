@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        
+
         <script type="module" src="../js/Buscador.js" defer></script>
         <script type="module" src="../js/favoritos.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
@@ -74,7 +74,7 @@
                 </li>
                 <li class="profile">
                     <div class="profile-details">
-                        <!--<img src="profile.jpg" alt="profileImg">-->
+                        <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
                         <div class="name_job">
                             <div id="username" class="name"></div>
                             <div id="role" class="job">Web designer</div>
@@ -88,7 +88,7 @@
         </div>
 
         <section id="fondoi" class="home-section" >
-            
+
         </section>
 
         <script>

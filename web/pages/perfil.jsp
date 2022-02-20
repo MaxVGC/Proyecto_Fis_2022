@@ -75,7 +75,7 @@
                 </li>
                 <li class="profile">
                     <div class="profile-details">
-                        <!--<img src="profile.jpg" alt="profileImg">-->
+                        <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
                         <div class="name_job">
                             <div id="username" class="name"></div>
                             <div id="role" class="job">Web designer</div>
@@ -89,10 +89,10 @@
         </div>
 
         <div class="home-section container-fluid" style="margin:0;background-color: #242424" id='fondoi'>
-            <div id="img_favorito" class="row" style="background-size: cover;">
+            <div id="img_favorito" class="row">
                 <div class="col-md-6" id="perfil-barra">
                     <div id="img_perfil_barra">
-                        <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
+                        <img id="img_perfil" class="img_img" src="../img/prueba.png" alt="profileImg">
                     </div>
                     <div id="datos_perfil">
                         <center><span id="username-barra" style="color: white;font-size: 27px;"></span></center>
@@ -101,13 +101,47 @@
                 </div>
                 <div class="col-md-6" id="datos_ubicacion">
                     <div id="ubicacion_img">
-                        <i class='bx bx-map'></i>
+                        <i class='bx bx-camera'></i>
                         <center><span id="ubicacion_barra" style="color:white; margin-left: 10px;"></span></center>
                     </div>
                 </div>
             </div>
-            <div class="row" style="height: 250px">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row" style="padding-top: 10px">
+                        <div class='span_CambiarContraseña'>
+                            <span style="color:white;">Cambiar contraseña</span>
+                        </div>                     
+                    </div>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-6" >
+                            <div style="width:100%;display: flex;justify-content: center">
+                                <input type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Nueva contraseña" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="width:100%;display: flex;justify-content: center">
+                                <input type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Confirmar contraseña" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-12" >
+                            <div style="width:100%;display: flex;justify-content: center">
+                                <input style="margin-top: 0" type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Antigua contraseña" required/>
+                            </div>
+                            <center style="margin-top: 10px"><span style="color:red;font-size: 10px;" id="span_ValidacionContraseña"></span></center>
+                        </div> 
+                    </div>
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col-md-12" >
+                            <button id="btn_CambioContraseña" class="btn btn-primary btn-grad" >Aceptar</button>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-6">
 
+                </div>
             </div>
         </div>
 
@@ -115,18 +149,15 @@
             let sidebar = document.querySelector(".sidebar");
             let closeBtn = document.querySelector("#btn");
             let searchBtn = document.querySelector(".bx-search");
-            var inp = document.getElementById('inputs');
 
             closeBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-                // b_sugerencias();
             });
 
             searchBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
                 menuBtnChange();
-                // b_sugerencias();
             });
 
             function menuBtnChange() {
@@ -143,6 +174,8 @@
                     document.getElementById("sugerencias").className = "";
                 }
             }
+           
+
         </script>
     </body>
 

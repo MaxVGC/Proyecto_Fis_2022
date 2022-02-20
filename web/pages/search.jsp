@@ -73,7 +73,7 @@
                 </li>
                 <li class="profile">
                     <div class="profile-details">
-                        <!--<img src="profile.jpg" alt="profileImg">-->
+                        <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
                         <div class="name_job">
                             <div id="username" class="name"></div>
                             <div id="role" class="job">Web designer</div>

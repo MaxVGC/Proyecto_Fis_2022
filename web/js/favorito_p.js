@@ -7,13 +7,26 @@ var lat = params.get('lat');
 var lng = params.get('lng');
 var city = params.get('c');
 var city_name = city.split(",");
+var img = atob(params.get('i'));
+
 let FavBtn = document.querySelector("#btn_fav");
 
 ObtenerDatosClima();
-name();
 pronostico();
 ObtenerCalidadDelAire();
 ValidarFavorito(city);
+Construir();
+
+
+function Construir() {
+    document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementById('username').innerHTML = user;
+    document.getElementById('role').innerHTML = type;
+    document.getElementById('img_perfil').src = img;
+}
 
 FavBtn.addEventListener("click", () => {
     if (document.querySelector("#btn_fav.bx.bx-heart")) {
@@ -41,11 +54,6 @@ function ValidarFavorito(name) {
 function ObtenerDatosClima() {
     $.get("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&lang=es&units=metric&appid=" + API_KEY_OpenWeather, function (data) {
         document.title = "Favorito - " + city;
-        document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-        document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-        document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-        document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "";
-
         document.getElementById('temp').innerHTML = Math.round(data.main.temp) + "°";
         document.getElementById('icon').style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.weather[0].icon + ".png')";
         document.getElementById('city').innerHTML = city_name[0] + "";
@@ -89,10 +97,7 @@ function ObtenerCalidadDelAire() {
     })
 }
 
-function name() {
-    document.getElementById('username').innerHTML = user;
-    document.getElementById('role').innerHTML = type;
-}
+
 
 function ObtenerProbabilidadDeLluvia(data) {
     document.getElementById('pdll').innerHTML = Math.round(data.daily[0].pop * 100) + "%";

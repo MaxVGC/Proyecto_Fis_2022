@@ -50,12 +50,13 @@
                             <form action="validarusuario" method="POST" style="display: contents;">
                                 <div class="form-outline form-white" style="width: 70%;">
                                     <span style="color:white;">Usuario</span>
-                                    <input autocomplete="off" type="text" name="user" id="inputs" class="form-control" required/>
+                                    <input autocomplete="off" type="text" name="user" class="input-custom" required/>
                                 </div>
 
                                 <div class="form-outline form-white" style="width: 70%;margin-top: 10%;">
                                     <span style="color:white;">Contraseña</span><center></center>
-                                    <input autocomplete="off" type="password" name="pass" id="inputs" class="form-control" required/>
+                                    <input autocomplete="off" type="password" name="pass" class="input-custom" required/>
+                                    <input style="display:none" type="text" autocomplete="off" name="aux" value="1" readonly/>
                                 </div>
                                 <div style="margin-top: 10%;display: flex;align-items: center;justify-content: center;">
                                     <button  id="iniciar" type="submit" style="margin-right: 10%;" class="btn btn-primary">Ingresar</button>
@@ -76,7 +77,7 @@
                         </div>
                         <div style="height: 10%;display: flex;align-items: center;justify-content: center;flex-direction: row;">
                             <img src="img/icon.png" style="max-width: 10%;max-height: 66%;">
-                            <span style="font-size: 1rem;color: black;font-weight: bold;margin-left: 3%;">Heart Cloud</span>
+                            <span style="font-size: 1rem;color: gray;font-weight: bold;margin-left: 3%;">Heart Cloud</span>
                         </div>
 
                     </div>
@@ -86,7 +87,7 @@
         <script type="text/javascript">
             var height = window.innerHeight;
             var ciudad;
-            
+
             function alertt() {
                 let params = new URLSearchParams(location.search);
                 var contract = params.get('alert');
@@ -94,7 +95,7 @@
                     alert('El Usuario ingresado no se encuentra registrado');
                 } else if (contract == 1) {
                     alert('Usuario o contraseña incorrectos');
-                }else if (contract == 2) {
+                } else if (contract == 2) {
                     alert('Usuario registrado correctamente');
                 }
             }
@@ -112,7 +113,7 @@
                 alertt();
                 //$(window).on('resize', _.debounce(redimensionar, 100));
             });
-            
+
             function parseJwt(token) {
                 var base64Url = token.split('.')[1];
                 var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -122,15 +123,18 @@
 
                 return JSON.parse(jsonPayload);
             }
-            
+
             function handleCredentialResponse(response) {
                 const responsePayload = parseJwt(response.credential);
-                console.log("ID: " + responsePayload.sub);
-                console.log('Full Name: ' + responsePayload.name);
-                console.log('Given Name: ' + responsePayload.given_name);
-                console.log('Family Name: ' + responsePayload.family_name);
-                console.log("Image URL: " + responsePayload.picture);
-                console.log("Email: " + responsePayload.email);
+                fetch('validarusuario?aux=2&id_google=' + responsePayload.sub)
+                        .then((res) => res.json()).then(data => {
+                            console.log(data);
+                    if (data.datos.length === 0) {
+                        window.location = "pages/registro.jsp?nombre=" + responsePayload.given_name + "&apellido=" + responsePayload.family_name + "&image=" + responsePayload.picture + "&email=" + responsePayload.email + "&rol=2&id_google=" + responsePayload.sub;
+                    } else {
+                        window.location = "pages/home.jsp?n=" + data.datos[0].nickname + "&u=" + data.datos[0].rol + "&i=" + data.datos[0].image;
+                    }
+                });
             }
         </script>
 
@@ -138,4 +142,13 @@
 
 </html>
 
-<!--https://source.unsplash.com/random/1280x720/?city,paris-->
+<!--https://source.unsplash.com/random/1280x720/?city,paris
+
+window.location = "pages/registro.jsp?nombre=" + responsePayload.given_name + "&apellido=" + responsePayload.family_name + "&image=" + responsePayload.picture + "&email=" + responsePayload.email + "&rol=2&id_google=" + responsePayload.sub;
+                console.log("ID: " + responsePayload.sub);
+                console.log('Full Name: ' + responsePayload.name);
+                console.log('Given Name: ' + responsePayload.given_name);
+                console.log('Family Name: ' + responsePayload.family_name);
+                console.log("Image URL: " + responsePayload.picture);
+                console.log("Email: " + responsePayload.email);
+-->

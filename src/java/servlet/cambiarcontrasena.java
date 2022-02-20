@@ -4,20 +4,26 @@
  */
 package servlet;
 
+import datos.Cifrador;
+import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import datos.Cifrador;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author carlo
  */
-public class prueb extends HttpServlet {
+public class cambiarcontrasena extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,18 +34,51 @@ public class prueb extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public boolean ValidarContrasena(Statement q, String antigua, String user) throws SQLException {
+        try {
+            String s = "select password from usuarios where nickname='" + user + "'";
+            Cifrador n = new Cifrador();
+            ResultSet f = q.executeQuery(s);
+            f.next();
+            String aux = f.getString("password").replace(" ", "");
+            if (aux.equals(n.hash(antigua))) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String user = request.getParameter("user");
+        String nueva = request.getParameter("nueva");
+        String antigua = request.getParameter("antigua");
+
+        conexionJDBC conexion = new conexionJDBC();
+
         try (PrintWriter out = response.getWriter()) {
-           
-           String aux="http://localhost:8080/WheaterApp/pages/registro.jsp?nombre=MaxVGC&apellido=undefined&image=https://lh3.googleusercontent.com/a-/AOh14GiSfZso2Qq6yfgEwyTijrAwTO7sT0eXygdxAX1UGg=s96-c&email=marlesandres1@gmail.com&rol=2";
-           String b[]=aux.split("registro.jsp");
-           out.println(b[1]);
-            
-           
+
+            conexion.conectar();
+            Cifrador n = new Cifrador();
+            Statement q = conexion.getConexion().createStatement();
+
+            if (ValidarContrasena(q, antigua, user)) {
+                String aux = "update usuarios set password='" + n.hash(nueva) + "' where nickname='" + user + "'";
+                PreparedStatement pst = conexion.getConexion().prepareStatement(aux);
+                pst.execute();
+                out.println("1");
+            } else {
+                out.println("0");
+            }
+            conexion.getConexion().close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
         } catch (Exception ex) {
-            Logger.getLogger(prueb.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 

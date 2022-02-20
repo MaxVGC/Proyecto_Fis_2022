@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -33,36 +35,82 @@ public class validarusuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public String GenerarJSON(ResultSet f) throws SQLException {
+        Cifrador n = new Cifrador();
+        JSONObject obj = new JSONObject();
+        JSONArray list = new JSONArray();
+        JSONObject innerObj = new JSONObject();
+
+        while (f.next()) {
+            innerObj.put("nickname", n.codificarB64(f.getString("nickname")));
+            innerObj.put("rol", n.codificarB64(f.getString("rol")));
+            innerObj.put("image", n.codificarB64(f.getString("image")));
+            list.add(innerObj);
+        }
+
+        obj.put("datos", list);
+        return obj.toJSONString();
+    }
+
+    public String existeUsuarioGoogle(Statement q, String id_google) throws SQLException {
+        String s = "select usuarios.nickname, roles.rol,usuarios_google.image from usuarios,roles,usuarios_google where usuarios_google.id=usuarios.id and usuarios.rol=roles.id and usuarios_google.id_google='" + id_google + "'";
+        ResultSet f = q.executeQuery(s);
+        String json = GenerarJSON(f);
+        return json;
+    }
+
+    public String[] existeUsuario(Statement q, String user) throws SQLException {
+        String s = "select usuarios.password, roles.rol from usuarios,roles where usuarios.rol=roles.id and nickname='" + user + "'";
+        ResultSet f = q.executeQuery(s);
+        String[] aux = {"a", "a"};
+        ResultSet aux2 = f;
+        if (aux2.next()) {
+            aux[0] = f.getString("password");
+            aux[1] = f.getString("Rol");
+            return aux;
+        } else {
+            return null;
+        }
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        conexionJDBC conexion = new conexionJDBC();
         try {
-            conexion.conectar();
+
+            response.setContentType("text/html;charset=UTF-8");
+
+            conexionJDBC conexion = new conexionJDBC();
             Cifrador n = new Cifrador();
-            String sql = "select nickname,password from usuarios where nickname='" + request.getParameter("user") + "'";
-            Statement stat = conexion.getConexion().createStatement();
-            ResultSet query = stat.executeQuery(sql);
-            if (query.next() != false) {
-                conexion.getConexion().close();
-                if (query.getString("nickname").replace(" ", "").equals(request.getParameter("user")) && query.getString("password").replace(" ", "").equals(n.hash(request.getParameter("pass")))) {
-                    response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(request.getParameter("user")) + "&u="+n.codificarB64("Usuario"));
+
+            String aux = request.getParameter("aux");
+
+            conexion.conectar();
+            Statement q = conexion.getConexion().createStatement();
+
+            if (aux.equals("1")) {
+                String user = request.getParameter("user");
+                String pass = n.hash(request.getParameter("pass"));
+                String[] f = existeUsuario(q, user);
+                if (f != null) {
+                    if (f[0].equals(pass)) {
+                        response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]));
+                    } else {
+                        response.sendRedirect("index.html?alert=1");
+                    }
                 } else {
-                    response.sendRedirect("index.html?alert=1");
+                    response.sendRedirect("index.html?alert=0");
                 }
             } else {
-                conexion.getConexion().close();
-                response.sendRedirect("index.html?alert=0");
+                PrintWriter out = response.getWriter();
+                String id_google = request.getParameter("id_google");
+                out.write(existeUsuarioGoogle(q, id_google));;
             }
+            conexion.getConexion().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
 
-        } catch (Exception e) {
-            out.println(e);
-            try {
-                conexion.getConexion().close();
-            } catch (SQLException ex) {
-                Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (Exception ex) {
+            Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,3 +154,4 @@ public class validarusuario extends HttpServlet {
     }// </editor-fold>
 
 }
+//response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(request.getParameter("user")) + "&u="+n.codificarB64("Usuario"));

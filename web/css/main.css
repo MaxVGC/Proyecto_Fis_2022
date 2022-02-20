@@ -1,6 +1,33 @@
 #login {
-    background-image: linear-gradient(45deg, rgba(46, 46, 46, 0.8), rgba(46, 46, 46, 0.8));
-    backdrop-filter: blur(20px)
+    background-color: #242424;
+}
+
+
+.input-custom{
+    background-color: #333333;
+    border-radius: 50px 50px 50px 50px;
+    border-style: solid;
+    border-color: #333333;
+    transition: all .2s ease-out;
+    text-align: center;
+    margin-top: 15px;
+    width:100%;
+    color:#B0B0B0;
+}
+.input-custom:focus{
+    transition: all .2s ease-out;
+    border: double 2px transparent;
+    border-radius: 50px;
+    background-image: linear-gradient(#333333, #333333), radial-gradient( circle farthest-corner at 10.2% 55.8%,  rgba(252,37,103,1) 0%, rgba(250,38,151,1) 46.2%, rgba(186,8,181,1) 90.1% );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+:focus {
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 #BarraLoginLateral {
@@ -8,6 +35,7 @@
     backdrop-filter: blur(5px);
     height: 130px;
     position: absolute;
+    display: block;
     bottom: 0px;
     top: 75%;
     -webkit-border-radius: 0px 20px 20px 0px;
@@ -34,4 +62,10 @@
 
 #iniciar:hover {
     background-color: red;
+}
+
+@media (max-width: 768px) {
+    #BarraLoginLateral {
+        display:none;
+    }
 }

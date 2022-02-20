@@ -11,14 +11,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import datos.Cifrador;
+import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import datos.Cifrador;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -35,37 +36,90 @@ public class registrarusuario extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public boolean existeUsuario(Statement q, String user) throws SQLException {
+        String s = "select nickname from usuarios where nickname='" + user + "'";
+        ResultSet f = q.executeQuery(s);
+        if (f.next()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int ObtenerIdLibre(Statement q) throws SQLException {
+        System.out.println("Entre");
+        String s = "select id from usuarios order by id desc ";
+        ResultSet f = q.executeQuery(s);
+        if (f.next() == false) {
+            return 1;
+        } else {
+            return Integer.parseInt(f.getString("id")) + 1;
+        }
+    }
+
+    public String Mayusculas(String str) {
+        StringBuffer strbf = new StringBuffer();
+        Matcher match = Pattern.compile("([a-z])([a-z]*)", Pattern.CASE_INSENSITIVE).matcher(str);
+        while (match.find()) {
+            match.appendReplacement(strbf, match.group(1).toUpperCase() + match.group(2).toLowerCase());
+        }
+        return (match.appendTail(strbf).toString());
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+
         conexionJDBC conexion = new conexionJDBC();
         PrintWriter out = response.getWriter();
+
         try {
             Cifrador n = new Cifrador();
+            response.setContentType("text/html;charset=UTF-8");
             conexion.conectar();
-            String s = "select * from usuarios";
-            Statement q;
-            q = conexion.getConexion().createStatement();
-            ResultSet f = q.executeQuery(s);
-            while (!f.isLast()) {
-                f.next();
+            Statement q = conexion.getConexion().createStatement();
+
+            String user = request.getParameter("user");
+            String rol = request.getParameter("rol");
+            String url = request.getParameter("URL");
+            String b[] = url.split("registro.jsp");
+            if (!existeUsuario(q, user)) {
+                int id = ObtenerIdLibre(q);
+                String name = Mayusculas(request.getParameter("name"));
+                String pass = n.hash(request.getParameter("pass"));
+                String apell = Mayusculas(request.getParameter("apell"));
+                if (apell.equals("Undefined")) {
+                    apell = " ";
+                }
+                String email = request.getParameter("email");
+
+                if (rol.equals("1")) {
+                    String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo,rol) VALUES (" + id + ",'" + user + "','" + pass + "','" + name + "','" + apell + "','" + email + "'," + rol + ")";
+                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
+                    pst.execute();
+                } else {
+                    String image = request.getParameter("image");
+                    String id_google = request.getParameter("id_google");
+                    String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo,rol) VALUES (" + id + ",'" + user + "','" + pass + "','" + name + "','" + apell + "','" + email + "'," + rol + ")";
+                    System.out.println(sql);
+                    String sql2 = "INSERT INTO usuarios_google (id,id_google,image) VALUES (" + id + ",'"+id_google+"','" + image + "')";
+                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
+                    pst.execute();
+                    pst = conexion.getConexion().prepareStatement(sql2);
+                    pst.execute();
+                }
+                response.sendRedirect("index.html?alert=2");
+            } else {
+                if (rol.equals("1")) {
+                    response.sendRedirect("pages/registro.jsp?alert=0");
+                } else {
+                    response.sendRedirect("pages/registro.jsp"+b[1]+"&alert=0");
+                }
             }
-            int id = f.getInt("id") + 1;
-            String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo) VALUES (" + id + ",'" + request.getParameter("user") + "','" + n.hash(request.getParameter("pass")) + "','" + request.getParameter("name") + "','" + request.getParameter("apell") + "','" + request.getParameter("email") + "')";
-            PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
-            pst.execute();
             conexion.getConexion().close();
-            response.sendRedirect("index.html?alert=2");
-        } catch (SQLException ex) {
-            out.println(ex);
-            try {
-                conexion.getConexion().close();
-            } catch (SQLException ex1) {
-                Logger.getLogger(registrarusuario.class.getName()).log(Level.SEVERE, null, ex1);
-            }
         } catch (Exception ex) {
             Logger.getLogger(registrarusuario.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

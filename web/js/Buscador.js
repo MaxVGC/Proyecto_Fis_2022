@@ -12,6 +12,7 @@ const log = document.getElementById('valores');
 var aux = 0;
 var user = params.get('n');
 var type = params.get('u');
+var img = params.get('i');
 
 input.addEventListener('input', updateValue);
 
@@ -44,12 +45,12 @@ function updateValue(e) {
 }
 
 function concatenar1(nombre, pais, id) {
-    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "'><div>" + nombre + ", " + pais + " </div></a>"
+    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "'><div>" + nombre + ", " + pais + " </div></a>"
     return aux;
 }
 
 function concatenar2(nombre, estado, pais, id) {
-    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
+    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type +"&i=" + img+ "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
     return aux;
 }
 
