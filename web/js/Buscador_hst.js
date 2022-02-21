@@ -85,6 +85,7 @@ function OcultarDiv() {
 function GenerarLista(ele, div, div2) {
     OcultarDiv()
     input.value = "";
+    aux=0;
     document.getElementById('title_hst').innerHTML = ele.text();
     ObtenerLatLngId(ele[0].className);
     div.classList.toggle('open');

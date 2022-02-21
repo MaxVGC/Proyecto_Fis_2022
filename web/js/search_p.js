@@ -24,7 +24,7 @@ function Construir() {
     document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
     document.getElementById('username').innerHTML = user;
     document.getElementById('role').innerHTML = type;
-    if (params.get('i') !== null) {
+    if (params.get('i').toString()!=="null") {
         document.getElementById('img_perfil').src = img;
     }
 }
