@@ -31,6 +31,10 @@
     position: relative;
 }
 
+.sidebar.open li.profile a{
+    background: none;
+}
+
 .sidebar .logo-details .icon {
     opacity: 0;
     transition: all 0.5s ease;

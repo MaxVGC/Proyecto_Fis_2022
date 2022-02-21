@@ -23,8 +23,10 @@ function Construir() {
     document.getElementById('username').innerHTML = user;
     document.getElementById('role').innerHTML = type;
     document.getElementById('img_perfil').src = img;
-    let aux = document.getElementsByClassName('img_img');
-    aux[0].src = img;
+    if (params.get('i') !== null) {
+        let aux = document.getElementsByClassName('img_img');
+        document.getElementById('img_perfil').src = img;
+    }
 }
 
 

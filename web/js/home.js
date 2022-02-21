@@ -5,9 +5,9 @@ var user = atob(params.get('n'));
 var type = atob(params.get('u'));
 var img=atob(params.get('i'));
 
-//ObtenerDatosClima();
-//pronostico();
-//ObtenerCalidadDelAire();
+ObtenerDatosClima();
+pronostico();
+ObtenerCalidadDelAire();
 Construir();
 
 function Construir() {
@@ -17,7 +17,9 @@ function Construir() {
     document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i="+btoa(img);
     document.getElementById('username').innerHTML = user;
     document.getElementById('role').innerHTML = type;
-    document.getElementById('img_perfil').src=img;
+    if(params.get('i')!==null){
+        document.getElementById('img_perfil').src=img;
+    }   
 }
 
 function ObtenerDatosClima() {
