@@ -24,6 +24,7 @@ function Construir() {
     document.getElementById('role').innerHTML = type;
     if (params.get('i') !== null) {
         let aux = document.getElementsByClassName('img_img');
+        aux[0].src=img;
         document.getElementById('img_perfil').src = img;
     }
 }
