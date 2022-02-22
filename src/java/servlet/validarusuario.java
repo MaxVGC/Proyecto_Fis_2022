@@ -59,6 +59,13 @@ public class validarusuario extends HttpServlet {
         return json;
     }
 
+    public String TraerFoto(Statement q, String user) throws SQLException {
+        String s = "select image from usuarios, usuarios_google where usuarios.id=usuarios_google.id and usuarios.nickname='" + user + "'";
+        ResultSet f = q.executeQuery(s);
+        f.next();
+        return f.getString("image");
+    }
+
     public String[] existeUsuario(Statement q, String user) throws SQLException {
         String s = "select usuarios.password, roles.rol from usuarios,roles where usuarios.rol=roles.id and nickname='" + user + "'";
         ResultSet f = q.executeQuery(s);
@@ -93,7 +100,11 @@ public class validarusuario extends HttpServlet {
                 String[] f = existeUsuario(q, user);
                 if (f != null) {
                     if (f[0].equals(pass)) {
-                        response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]));
+                        if (f[1].equals("1")) {
+                            response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null");
+                        } else {
+                            response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i="+n.codificarB64(TraerFoto(q, user)));
+                        }
                     } else {
                         response.sendRedirect("index.html?alert=1");
                     }

@@ -14,6 +14,11 @@ var user = params.get('n');
 var type = params.get('u');
 var img = params.get('i');
 
+let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+var inp = document.getElementById('sugerencias');
+
 input.addEventListener('input', updateValue);
 
 function updateValue(e) {
@@ -50,10 +55,34 @@ function concatenar1(nombre, pais, id) {
 }
 
 function concatenar2(nombre, estado, pais, id) {
-    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type +"&i=" + img+ "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
+    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
     return aux;
 }
 
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+    b_sugerencias()
+});
 
+searchBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    menuBtnChange();
+    b_sugerencias()
+});
 
+function menuBtnChange() {
+    if (sidebar.classList.contains("open")) {
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else {
+        closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+}
 
+function b_sugerencias() {
+    if (inp.classList.contains("open")) {
+        inp.classList.replace("open", "close_b");
+    } else {
+        inp.classList.replace("close_b", "open");
+    }
+}

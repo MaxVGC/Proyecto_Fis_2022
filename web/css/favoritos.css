@@ -28,6 +28,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     opacity: 1;
 }
 
+#sugerencias.close_b{
+    opacity: 0;
+}
+
 #fondoi{
     padding-left: 20px;
     padding-right:  20px;

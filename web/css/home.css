@@ -34,6 +34,10 @@ a{
     opacity: 1;
 }
 
+#sugerencias.close_b{
+    opacity: 0;
+}
+
 @media (max-width: 530px) {
     #sugerencias{
         position: absolute;

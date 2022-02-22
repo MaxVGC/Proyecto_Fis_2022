@@ -60,6 +60,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     opacity: 1;
 }
 
+#sugerencias.close_b{
+    opacity: 0;
+}
+
 #sugerencias_hst{
     position: absolute;
     top: 60px;
