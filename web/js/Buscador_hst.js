@@ -102,14 +102,12 @@ function ObtenerLatLngId(id) {
             .then((res) => res.json()).then(data => {
         var lat = data.result.geometry.location.lat;
         var lng = data.result.geometry.location.lng;
-        var dt = data;
         const fecha = new Date();
         const añoActual = fecha.getFullYear();
         const hoy = fecha.getDate();
         const mesActual = fecha.getMonth()
         var newDate = new Date(Date.UTC(añoActual, mesActual, hoy - 1, 0, 0, 0));
         BuscarHistorial(lat, lng, newDate.getTime().toString().substr(0, 10));
-
     });
 }
 
@@ -124,8 +122,6 @@ function HistorialPorDias(lat, lng, dt, i) {
         CrearFichasHistorial(data, i, dt, lat, lng)
     });
 }
-
-
 
 function CrearFichasHistorial(data, i, dt, lat, lng) {
     var aux = document.getElementsByClassName('ficha_hst');

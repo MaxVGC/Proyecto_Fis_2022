@@ -8,6 +8,25 @@
     font-family: "Poppins", sans-serif;
 }
 
+#sugerencias{
+    position: absolute;
+    left: 250px;
+    width: 250px;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 1s;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+#sugerencias.open{
+    opacity: 1;
+}
+
+#sugerencias.close_b{
+    opacity: 0;
+}
+
 .sidebar {
     position: fixed;
     left: 0;
@@ -286,5 +305,16 @@
 @media (max-width: 420px) {
     .sidebar li .tooltip {
         display: none;
+    }
+}
+
+@media (max-width: 530px) {
+    #sugerencias{
+        position: absolute;
+        background-color: white;
+        z-index: 1;
+        top:65px;
+        left: 0px;
+        width: 220px;
     }
 }

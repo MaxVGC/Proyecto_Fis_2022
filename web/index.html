@@ -2,20 +2,23 @@
 <html lang="en">
 
     <head>
+        <title>Iniciar sesion</title>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Login</title>
+        
+        <script type="module" src="js/main.js" defer></script>
+        <script type="text/javascript" src="js/mdb.min.js"></script> 
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+
         <link rel="icon" href="img/icon.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <link rel="stylesheet" href="css/mdb.min.css" />
         <link rel="stylesheet" href="css/main.css" />
-        <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-        <script type="text/javascript" src="js/mdb.min.js"></script> 
-        <script type="module" src="js/main.js" defer></script>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
     </head>
 
     <body>
@@ -128,7 +131,7 @@
                 const responsePayload = parseJwt(response.credential);
                 fetch('validarusuario?aux=2&id_google=' + responsePayload.sub)
                         .then((res) => res.json()).then(data => {
-                            console.log(data);
+                    console.log(data);
                     if (data.datos.length === 0) {
                         window.location = "pages/registro.jsp?nombre=" + responsePayload.given_name + "&apellido=" + responsePayload.family_name + "&image=" + responsePayload.picture + "&email=" + responsePayload.email + "&rol=2&id_google=" + responsePayload.sub;
                     } else {

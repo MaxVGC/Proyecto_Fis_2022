@@ -11,19 +11,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
+        <script type="module" src="../js/registro.js" defer></script>
+        <script type="text/javascript" src="../js/mdb.min.js"></script>
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script async src="https://www.google.com/recaptcha/api.js"></script>
+
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/registro.css" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-        <script src="../js/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-        <script type="text/javascript" src="../js/mdb.min.js"></script>
-        <script async src="https://www.google.com/recaptcha/api.js"></script>
-        <script type="module" src="../js/registro.js" defer></script>
-
     </head>
 
     <body>

@@ -16,12 +16,12 @@
 
         <script type="module" src="../js/Buscador.js" defer></script>
         <script type="module" src="../js/perfil.js" defer></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script type="module" src="../js/Construir.js" defer></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
         <script src="../js/jquery-3.4.1.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
+        
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/perfil.css">

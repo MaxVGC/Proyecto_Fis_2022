@@ -100,7 +100,7 @@ public class validarusuario extends HttpServlet {
                 String[] f = existeUsuario(q, user);
                 if (f != null) {
                     if (f[0].equals(pass)) {
-                        if (f[1].equals("1")) {
+                        if (f[1].equals("Usuario - N")) {
                             response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null");
                         } else {
                             response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i="+n.codificarB64(TraerFoto(q, user)));

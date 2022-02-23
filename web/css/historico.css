@@ -45,25 +45,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     background-color: red;
 }
 
-#sugerencias{
-    position: absolute;
-    left: 250px;
-    width: 250px;
-    background-color: white;
-    opacity: 0;
-    transition: opacity 1s;
-    border-radius: 10px;
-    padding-left: 10px;
-}
-
-#sugerencias.open{
-    opacity: 1;
-}
-
-#sugerencias.close_b{
-    opacity: 0;
-}
-
 #sugerencias_hst{
     position: absolute;
     top: 60px;
@@ -181,13 +162,3 @@ body::-webkit-scrollbar-thumb {
     display: block;
 }
 
-@media (max-width: 530px) {
-    #sugerencias{
-        position: absolute;
-        background-color: white;
-        z-index: 1;
-        top:65px;
-        left: 0px;
-        width: 220px;
-    }
-}

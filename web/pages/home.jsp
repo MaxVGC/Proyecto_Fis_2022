@@ -9,16 +9,19 @@
 
     <head>
         <title>Inicio</title>
+
         <meta name="description" content="Ponga su descripción aquí.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
         <script type="module" src="../js/Buscador.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-        <script type="text/javascript" src="../js/mdb.min.js"></script>
+        <script type="module" src="../js/Construir.js" defer></script>
         <script type="module" src="../js/home.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
+        <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
 
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
@@ -72,6 +75,13 @@
                     </a>
                     <span class="tooltip">Favoritos</span>
                 </li>
+                <li>
+                    <a id="map_link" href="#">
+                        <i class='bx bx-map-alt'></i>
+                        <span class="links_name">Mapa del sitio</span>
+                    </a>
+                    <span class="tooltip">Mapa del sitio</span>
+                </li>
                 <li class="profile">
                     <div class="profile-details">
                         <img id="img_perfil" src="../img/prueba.png" alt="profileImg">
@@ -98,7 +108,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-6" style="padding:0;">
                             <div class="row" style="margin:12px;">
                                 <center>
@@ -110,6 +119,7 @@
                                 <center>
                                     <div>
                                         <span id="inf" style="font-size: 1rem;color: white;"></span>
+                                        <i id="btn_fav" class='bx bx-heart' style="color:#ff4033"></i>
                                     </div>
                                 </center>
                             </div>

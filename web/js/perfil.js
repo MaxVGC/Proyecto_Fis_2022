@@ -10,26 +10,8 @@ var type = atob(params.get('u'));
 let Btn_CambioContraseña = document.getElementById("btn_CambioContraseña");
 
 
-Construir();
 MostrarDatosUsuario();
 MostrarImgFavorito();
-
-
-function Construir() {
-    document.getElementById('fav_link').href = "favoritos.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
-    document.getElementById('home_link').href = "home.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
-    document.getElementById('hst_link').href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
-    document.getElementById('pf_link').href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
-    document.getElementById('username').innerHTML = user;
-    document.getElementById('role').innerHTML = type;
-    document.title = "Perfil - " + user;
-    if (params.get('i').toString()!=="null") {
-        let aux = document.getElementsByClassName('img_img');
-        aux[0].src=img;
-        document.getElementById('img_perfil').src = img;
-    }
-}
-
 
 function MostrarImgFavorito() {
     fetch('../mostrarfavoritos?user=' + user)
