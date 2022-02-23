@@ -73,6 +73,13 @@
                     </a>
                     <span class="tooltip">Favoritos</span>
                 </li>
+                <li>
+                    <a id="map_link" href="#">
+                        <i class='bx bx-map-alt'></i>
+                        <span class="links_name">Mapa del sitio</span>
+                    </a>
+                    <span class="tooltip">Mapa del sitio</span>
+                </li>
                 <li class="profile">
                     <div class="profile-details">
                         <img id="img_perfil" src="../img/prueba.png" alt="profileImg">

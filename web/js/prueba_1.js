@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
 
+var aux="jaiba requeson";
+
 function saludo(){
     console.log("saludos al motoanexo");
 }

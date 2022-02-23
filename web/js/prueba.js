@@ -4,3 +4,4 @@
  */
 
 saludo();
+console.log(aux);

@@ -21,7 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
         <script src="../js/jquery-3.4.1.min.js"></script>
-        
+
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/home.css">
@@ -72,6 +72,13 @@
                         <span class="links_name">Favoritos</span>
                     </a>
                     <span class="tooltip">Favoritos</span>
+                </li>
+                <li>
+                    <a id="map_link" href="#">
+                        <i class='bx bx-map-alt'></i>
+                        <span class="links_name">Mapa del sitio</span>
+                    </a>
+                    <span class="tooltip">Mapa del sitio</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">
