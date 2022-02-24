@@ -127,7 +127,7 @@ function CrearFichasHistorial(data, i, dt, lat, lng) {
     var aux = document.getElementsByClassName('ficha_hst');
     let fechas = fecha(data.current.dt);
     var x = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + data.current.weather[0].icon + ".png')";
-    aux[i].innerHTML = '<div id="contain_hst"><div id="' + dt + '" class="image_hst ' + lat + ' ' + lng + ' ' + i + '" style="background-image:' + x + '"></div><span id="span_hst" >' + fechas[0].charAt(0).toUpperCase() + fechas[0].slice(1) + '  ' + fechas[1] + '/' + fechas[2] + '</span></div>';
+    aux[i].innerHTML = '<div id="contain_hst"><div id="' + dt + '" class="image_hst ' + lat + ' ' + lng + ' ' + i + '" style="background-image:' + x + ';background-repeat: no-repeat;background-position-y: center;"></div><span id="span_hst" >' + fechas[0].charAt(0).toUpperCase() + fechas[0].slice(1) + '  ' + fechas[1] + '/' + fechas[2] + '</span></div>';
 }
 
 function fecha(dt) {

@@ -135,7 +135,7 @@
                     if (data.datos.length === 0) {
                         window.location = "pages/registro.jsp?nombre=" + responsePayload.given_name + "&apellido=" + responsePayload.family_name + "&image=" + responsePayload.picture + "&email=" + responsePayload.email + "&rol=2&id_google=" + responsePayload.sub;
                     } else {
-                        window.location = "pages/home.jsp?n=" + data.datos[0].nickname + "&u=" + data.datos[0].rol + "&i=" + data.datos[0].image;
+                        window.location = "pages/clima.jsp?n=" + data.datos[0].nickname + "&u=" + data.datos[0].rol + "&i=" + data.datos[0].image+"&aux="+btoa("inicio");
                     }
                 });
             }

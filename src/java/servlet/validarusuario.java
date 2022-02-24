@@ -101,9 +101,9 @@ public class validarusuario extends HttpServlet {
                 if (f != null) {
                     if (f[0].equals(pass)) {
                         if (f[1].equals("Usuario - N")) {
-                            response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null");
+                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null"+"&aux="+n.codificarB64("inicio"));
                         } else {
-                            response.sendRedirect("pages/home.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i="+n.codificarB64(TraerFoto(q, user)));
+                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i="+n.codificarB64(TraerFoto(q, user))+"&aux="+n.codificarB64("inicio"));
                         }
                     } else {
                         response.sendRedirect("index.html?alert=1");

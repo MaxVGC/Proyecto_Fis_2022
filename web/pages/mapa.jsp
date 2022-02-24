@@ -93,37 +93,49 @@
         </div>
 
         <div class="home-section container-fluid" style="margin:0;background-color: #242424" id='fondoi'>
+            <div class="row" style="padding-top: 10px;">
+                <center style="color:white;"><span>Mapa del sitio</span></center>
+            </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="../img/inicio.png" class="card-img-top" alt="Screenshot de la pagina Inicio"/>
+                        <a class="home_link" href="#">
+                            <img src="../img/inicio.png" class="card-img-top" alt="Screenshot de la pagina Inicio"/>
+                        </a>
                         <div class="card-body">
-                            <h5 class="card-title">Inicio</h5>
+                            <h5 class="card-title">Clima</h5>
                             <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                                Pagina de principal del sitio web, muestra el clima del sitio donde se encuentre,
+                                se puede llegar a ella por todas las demas paginas a excepcion de Inicio y Registro, por el buscador y entrando 
+                                a tu ciudad guardada en favoritos.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="../img/perfil.png" class="card-img-top" alt="Screenshot de la pagina Perfil"/>                        
+                        <a class="pf_link" href="#">                        
+                            <img src="../img/perfil.png" class="card-img-top" alt="Screenshot de la pagina Perfil"/>                        
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">Perfil</h5>
                             <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                                Esta pagina muestra la informacion principal del usuario ademas de contar con la opcion de
+                                poder cambiar la contraseña. Se puede llegar a ella a traves de las demas paginas a excepcion
+                                de Inicio y Registro.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="../img/historico.png" class="card-img-top" alt="Screenshot de la pagina Historico"/>                       
+                        <a class="hst_link" href="#">  
+                            <img src="../img/historico.png" class="card-img-top" alt="Screenshot de la pagina Historico"/>                       
+                        </a>                      
                         <div class="card-body">
                             <h5 class="card-title">Historico</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text">Muestra el historico del clima y graficas de la ciudad buscada. Se puede
+                                llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.</p>
                         </div>
                     </div>
                 </div>
@@ -131,12 +143,14 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
+                        <a class="fav_link" href="#">  
+                            <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
+                        </a> 
                         <div class="card-body">
                             <h5 class="card-title">Favoritos</h5>
                             <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                                Muestra tus ciudades favoritas. Se puede
+                                llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.
                             </p>
                         </div>
                     </div>
@@ -145,10 +159,9 @@
                     <div class="card">
                         <img src="../img/login.png" class="card-img-top" alt="Screenshot de la pagina Iniciar sesion"/>                       
                         <div class="card-body">
-                            <h5 class="card-title">Iniciar sesion</h5>
+                            <h5 class="card-title">Inicio</h5>
                             <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                                Permite al usuario ingresar a la aplicacion, redirige a clima al iniciar sesion.
                             </p>
                         </div>
                     </div>
@@ -158,42 +171,7 @@
                         <img src="../img/registro.png" class="card-img-top" alt="Screenshot de la pagina Registro"/>                       
                         <div class="card-body">
                             <h5 class="card-title">Registro</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
-                        <div class="card-body">
-                            <h5 class="card-title">Favoritos</h5>
-                            <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="../img/login.png" class="card-img-top" alt="Screenshot de la pagina Iniciar sesion"/>                       
-                        <div class="card-body">
-                            <h5 class="card-title">Iniciar sesion</h5>
-                            <p class="card-text">
-                                This is a longer card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="../img/registro.png" class="card-img-top" alt="Screenshot de la pagina Registro"/>                       
-                        <div class="card-body">
-                            <h5 class="card-title">Registro</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                            <p class="card-text">Permite al usuario poder registrarse para ingresar a la aplicacion, se accede a ella solo por la pagina de Inicio</p>
                         </div>
                     </div>
                 </div>

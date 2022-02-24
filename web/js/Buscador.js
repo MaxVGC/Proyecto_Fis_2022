@@ -50,12 +50,12 @@ function updateValue(e) {
 }
 
 function concatenar1(nombre, pais, id) {
-    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "'><div>" + nombre + ", " + pais + " </div></a>"
+    var aux = "<a href='clima.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "&aux=" + btoa("busqueda") + "'><div>" + nombre + ", " + pais + " </div></a>"
     return aux;
 }
 
 function concatenar2(nombre, estado, pais, id) {
-    var aux = "<a href='search.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
+    var aux = "<a href='clima.jsp?id=" + id + "&n=" + user + "&u=" + type + "&i=" + img + "&aux=" + btoa("busqueda") + "'><div>" + nombre + ", " + estado + ", " + pais + " </div></a>"
     return aux;
 }
 

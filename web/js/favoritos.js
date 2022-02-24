@@ -35,6 +35,6 @@ function ConstruirRow(id) {
 function ConstruirCard(row, id, data) {
     let city = data.favoritos[id].ciudad;
     const aux = city.split(",");
-    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4" style="margin-top:20px;"><a href="favorito_p.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + btoa(user) + '&u=' + btoa(type) + '&i=' + btoa(img) + '"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
+    document.getElementById('row_' + row).innerHTML = document.getElementById('row_' + row).innerHTML + '<div class="col-sm-4" style="margin-top:20px;"><a href="clima.jsp?lat=' + data.favoritos[id].latitud + '&lng=' + data.favoritos[id].longitud + '&c=' + data.favoritos[id].ciudad + '&n=' + btoa(user) + '&u=' + btoa(type) + '&i=' + btoa(img) + '&aux='+btoa("favorita")+'"><div class="card"><img id="img_card_' + id + '" src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/><div class="card-body"><h5 class="card-title">' + data.favoritos[id].ciudad + '</h5></div></div></a></div>';
     document.getElementById('img_card_' + id).src = "https://source.unsplash.com/1288x665/?" + (aux[0]) + "";
 }

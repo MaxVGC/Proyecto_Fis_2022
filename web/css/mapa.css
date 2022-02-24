@@ -34,3 +34,7 @@ body::-webkit-scrollbar-thumb {
 h5{
     color:white;
 }
+
+p{
+    color:gray;
+}

@@ -119,16 +119,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     var aux = document.querySelector('#btn_submit');
                     aux.removeAttribute('disabled');
                 }
-            }
-
-            $(document).ready(() => {
-                let params = new URLSearchParams(location.search);
-                var contract = params.get('alert');
-                if (contract == 0) {
-                    alert('El usuario ingresado ya se encuentra registrado');
-                }
-            });
-
+            }  
         </script>
     </body>
 

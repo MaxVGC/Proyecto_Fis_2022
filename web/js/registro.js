@@ -7,7 +7,7 @@ Construir();
 
 function Construir() {
     let params = new URLSearchParams(location.search);
-    let aux=params.get('rol')
+    let aux = params.get('rol')
     let inputs = document.getElementsByClassName("input-custom");
     if (aux == "2") {
         inputs[1].value = params.get('rol');
@@ -27,3 +27,11 @@ function Construir() {
     }
 
 }
+
+$(document).ready(() => {
+    let params = new URLSearchParams(location.search);
+    var contract = params.get('alert');
+    if (contract == 0) {
+        alert('El usuario ingresado ya se encuentra registrado');
+    }
+});

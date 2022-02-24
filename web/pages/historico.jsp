@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
 
         <script type="module" src="../js/historico.js" defer></script>
         <script type="module" src="../js/Buscador_hst.js" defer></script>
@@ -21,12 +22,10 @@
         <script type="text/javascript" src="../js/mdb.min.js"></script>
         <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
 
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
         <link rel="stylesheet" href="../css/historico.css">
-        <link rel="stylesheet" href="../css/circle_progress.css">
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     </head>

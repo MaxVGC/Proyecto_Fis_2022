@@ -6,28 +6,31 @@
 
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
+
     <head>
-        <title>Inicio</title>
+        <title>Cargando...</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        
-        <script type="module" src="../js/favorito_p.js" defer></script>
-        <script type="module" src="../js/Buscador.js" defer></script>
+
+        <script type="module" src="../js/Clima.js" defer></script>
         <script type="module" src="../js/Construir.js" defer></script>
+        <script type="module" src="../js/Buscador.js" defer></script>
+
         <script type="text/javascript" src="../js/mdb.min.js"></script>
-        <script src="../js/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
-        
+        <script src="../js/jquery-3.4.1.min.js"></script>
+
         <link rel="stylesheet" href="../css/mdb.min.css" />
         <link rel="stylesheet" href="../css/navbar.css">
-        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="../css/clima.css">
         <link rel="stylesheet" href="../css/circle_progress.css">
         <link rel="icon" href="../img/icon.png" type="image/x-icon" />
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     </head>
+
     <body style="background-color: black;">
         <div id="prueba" class="sidebar">
             <div class="logo-details">
@@ -92,6 +95,7 @@
                 </li>
             </ul>
         </div>
+
         <div class="col-md-12 big_container" >
             <div class="row" style="margin: 0;height: 65vh;flex-direction: row;align-items: flex-end;justify-content: flex-end;background-size: cover; background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');" id='fondoi'>
                 <div class="col-md-6 barra_container" style="padding:0;">
@@ -104,18 +108,19 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-6" style="padding:0;">
                             <div class="row" style="margin:12px;">
                                 <center>
                                     <div>
-                                        <span id="city" style="font-size: 2rem;color: white;"></span>
+                                        <span id="city" style="font-size: 2rem;color: white;word-wrap: break-word ;"></span>
                                         <span id="country" style="font-size: 1rem;color: gray;font-weight: bold;"></span>
                                     </div>
                                 </center>
                                 <center>
                                     <div>
                                         <span id="inf" style="font-size: 1rem;color: white;"></span>
-                                        <i id="btn_fav" class='bx bx-heart' style="color:#ff4033"></i>
+                                        <i id="btn_fav" class='bx bx-heart' style="color:#ff4033;cursor: pointer"></i>
                                     </div>
                                 </center>
                             </div>
@@ -165,6 +170,7 @@
                                             <center><span style="color: white;font-size: 0.9rem;">Humedad</span></center>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -225,4 +231,6 @@
             </div>
         </div>
     </body>
+
+
 </html>
