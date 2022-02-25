@@ -11,7 +11,7 @@ let FavBtn = document.querySelector("#btn_fav");
 var divs = '';
 var user = atob(params.get('n'));
 var aux = atob(params.get('aux'));
-var city;
+var lat,lng,city;
 
 IdentificarProcedencia();
 
@@ -30,8 +30,8 @@ function IdentificarProcedencia() {
         var id = params.get('id');
         ObtenerLatLngId(id);
     } else if (aux == "favorita") {
-        var lat = params.get('lat');
-        var lng = params.get('lng');
+        lat = params.get('lat');
+        lng = params.get('lng');
         city = params.get('c');
         document.title = "Favorita - " + city.split(",")[0];
         ObtenerDatosClima(lat, lng);

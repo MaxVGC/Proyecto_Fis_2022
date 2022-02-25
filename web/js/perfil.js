@@ -28,7 +28,7 @@ function MostrarImgFavorito() {
 function MostrarDatosUsuario() {
     fetch('../informacionusuario?user=' + user)
             .then((res) => res.json()).then(data => {
-        console.log(data);
+        document.getElementsByClassName("img_img")[0].src = img;
         document.getElementById('username-barra').innerHTML = user;
         document.getElementById('nombre-barra').innerHTML = data.datos[0].nombre + " " + data.datos[0].apellido;
     });
