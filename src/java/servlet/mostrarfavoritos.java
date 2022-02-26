@@ -21,21 +21,22 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * Esta clase contiene los metodos para hacer la consulta de las ciudades
+ * guardadas por un usuario en la tabla favoritos.
  *
- * @author carlo
+ * @author Andres Marlex
  */
 public class mostrarfavoritos extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Este metodo se encarga de generar un JSON con los datos de la ciudades
+     * obtenidos de la consulta.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param f Resultados de la consulta.
+     * @return Retorna (String) que corresponde al JSON generado con los datos
+     * del usuario.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-
     public String GenerarJSON(ResultSet f) throws SQLException {
         String aux = "";
         JSONObject obj = new JSONObject();
@@ -48,10 +49,19 @@ public class mostrarfavoritos extends HttpServlet {
             innerObj.put("longitud", f.getString("longitud"));
             list.add(innerObj);
         }
-        obj.put("favoritos",list);
+        obj.put("favoritos", list);
         return obj.toJSONString();
     }
 
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     *
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -86,12 +96,13 @@ public class mostrarfavoritos extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -100,12 +111,13 @@ public class mostrarfavoritos extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -114,13 +126,13 @@ public class mostrarfavoritos extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Obtiene las ciudades favoritas del usuario";
     }// </editor-fold>
 
 }

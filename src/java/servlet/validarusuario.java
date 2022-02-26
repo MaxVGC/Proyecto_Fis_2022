@@ -27,13 +27,13 @@ import org.json.simple.JSONObject;
 public class validarusuario extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Este metodo se encarga de generar un JSON con los datos del usuario
+     * ingresado con google obtenidos de la consulta.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param f Resultados de la consulta.
+     * @return Retorna (String) que corresponde al JSON generado con los datos
+     * del usuario, si el usuario no existe retorna un JSON vacio.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
     public String GenerarJSON(ResultSet f) throws SQLException {
         Cifrador n = new Cifrador();
@@ -52,6 +52,16 @@ public class validarusuario extends HttpServlet {
         return obj.toJSONString();
     }
 
+    /**
+     * Este metodo se encarga de generar un JSON con los datos del usuario
+     * ingresado con google obtenidos de la consulta.
+     *
+     * @param q Variable de la base de datos.
+     * @param id_google Id del usuario de google entregado por la api de google.
+     * @return Retorna (String) que corresponde al JSON generado con los datos
+     * del usuario, si el usuario no existe retorna un JSON vacio.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public String existeUsuarioGoogle(Statement q, String id_google) throws SQLException {
         String s = "select usuarios.nickname, roles.rol,usuarios_google.image from usuarios,roles,usuarios_google where usuarios_google.id=usuarios.id and usuarios.rol=roles.id and usuarios_google.id_google='" + id_google + "'";
         ResultSet f = q.executeQuery(s);
@@ -59,6 +69,16 @@ public class validarusuario extends HttpServlet {
         return json;
     }
 
+    /**
+     * Este metodo se encarga obtener el url de la imagen de perfil desde la
+     * base de datos del usuario ingresado por google.
+     *
+     * @param q Variable de la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return Retorna (String) que corresponde a la url de la imagen de perfil
+     * del usuario.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public String TraerFoto(Statement q, String user) throws SQLException {
         String s = "select image from usuarios, usuarios_google where usuarios.id=usuarios_google.id and usuarios.nickname='" + user + "'";
         ResultSet f = q.executeQuery(s);
@@ -66,6 +86,16 @@ public class validarusuario extends HttpServlet {
         return f.getString("image");
     }
 
+    /**
+     * Este metodo se encarga de verificar si el usuario existe en la base de
+     * datos.
+     *
+     * @param q Variable de la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return Retorna (String[]) que corresponde a la contraseña y rol del
+     * usuario, en dado caso que no exista este retornara null del usuario.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public String[] existeUsuario(Statement q, String user) throws SQLException {
         String s = "select usuarios.password, roles.rol from usuarios,roles where usuarios.rol=roles.id and nickname='" + user + "'";
         ResultSet f = q.executeQuery(s);
@@ -80,6 +110,15 @@ public class validarusuario extends HttpServlet {
         }
     }
 
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     *
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -101,9 +140,9 @@ public class validarusuario extends HttpServlet {
                 if (f != null) {
                     if (f[0].equals(pass)) {
                         if (f[1].equals("Usuario - N")) {
-                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null"+"&aux="+n.codificarB64("inicio"));
+                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=null" + "&aux=" + n.codificarB64("inicio"));
                         } else {
-                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i="+n.codificarB64(TraerFoto(q, user))+"&aux="+n.codificarB64("inicio"));
+                            response.sendRedirect("pages/clima.jsp?n=" + n.codificarB64(user) + "&u=" + n.codificarB64(f[1]) + "&i=" + n.codificarB64(TraerFoto(q, user)) + "&aux=" + n.codificarB64("inicio"));
                         }
                     } else {
                         response.sendRedirect("index.html?alert=1");
@@ -127,12 +166,12 @@ public class validarusuario extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -141,12 +180,12 @@ public class validarusuario extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -155,13 +194,13 @@ public class validarusuario extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Valida si el usuario existe en la base de datos";
     }// </editor-fold>
 
 }

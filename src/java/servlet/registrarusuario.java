@@ -28,13 +28,13 @@ import java.util.regex.Pattern;
 public class registrarusuario extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Este metodo se encarga de verificar si el usuario existe en la base de
+     * datos.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param q Variable de la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return Retorna (Boolean)
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
     public boolean existeUsuario(Statement q, String user) throws SQLException {
         String s = "select nickname from usuarios where nickname='" + user + "'";
@@ -46,6 +46,13 @@ public class registrarusuario extends HttpServlet {
         }
     }
 
+    /**
+     * Este metodo se encarga de obtener un id para el registro del usuario.
+     *
+     * @param q Variable de la base de datos.
+     * @return Retorna (Integer) que corresponde al id libre.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public int ObtenerIdLibre(Statement q) throws SQLException {
         System.out.println("Entre");
         String s = "select id from usuarios order by id desc ";
@@ -57,6 +64,13 @@ public class registrarusuario extends HttpServlet {
         }
     }
 
+    /**
+     * Este metodo se encarga de transformar en mayusculas la primera letra de
+     * cada inicio de palabra o nombre.
+     *
+     * @param str Palabra a la cual se le aplicara el metodo.
+     * @return Retorna (Integer) que corresponde al id libre.
+     */
     public String Mayusculas(String str) {
         StringBuffer strbf = new StringBuffer();
         Matcher match = Pattern.compile("([a-z])([a-z]*)", Pattern.CASE_INSENSITIVE).matcher(str);
@@ -66,6 +80,15 @@ public class registrarusuario extends HttpServlet {
         return (match.appendTail(strbf).toString());
     }
 
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     *
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -101,7 +124,7 @@ public class registrarusuario extends HttpServlet {
                     String id_google = request.getParameter("id_google");
                     String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo,rol) VALUES (" + id + ",'" + user + "','" + pass + "','" + name + "','" + apell + "','" + email + "'," + rol + ")";
                     System.out.println(sql);
-                    String sql2 = "INSERT INTO usuarios_google (id,id_google,image) VALUES (" + id + ",'"+id_google+"','" + image + "')";
+                    String sql2 = "INSERT INTO usuarios_google (id,id_google,image) VALUES (" + id + ",'" + id_google + "','" + image + "')";
                     PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
                     pst.execute();
                     pst = conexion.getConexion().prepareStatement(sql2);
@@ -112,7 +135,7 @@ public class registrarusuario extends HttpServlet {
                 if (rol.equals("1")) {
                     response.sendRedirect("pages/registro.jsp?alert=0");
                 } else {
-                    response.sendRedirect("pages/registro.jsp"+b[1]+"&alert=0");
+                    response.sendRedirect("pages/registro.jsp" + b[1] + "&alert=0");
                 }
             }
             conexion.getConexion().close();
@@ -124,12 +147,12 @@ public class registrarusuario extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -138,12 +161,12 @@ public class registrarusuario extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -152,13 +175,13 @@ public class registrarusuario extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Registra el usuario en la base de datos";
     }// </editor-fold>
 
 }

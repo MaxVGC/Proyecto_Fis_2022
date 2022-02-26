@@ -16,23 +16,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
- * @author carlo
+ * Esta clase contiene los metodos para el cambio de contraseña.
+ * @author Andres Marlex
  */
 public class cambiarcontrasena extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Este metodo hace una consulta a la base de datos para validar si la contraseña
+     * que se ha ingresado concuerda con la del usuario.
+     * @param q Variable de la base de datos.
+     * @param antigua Contraseña que se usara para comparar con la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return (Boolean) Retorna falso si la contraseña no coincide con la de la base de
+     * datos, Retorna verdadero en caso contrario.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
     public boolean ValidarContrasena(Statement q, String antigua, String user) throws SQLException {
         try {
@@ -50,7 +49,16 @@ public class cambiarcontrasena extends HttpServlet {
             return false;
         }
     }
-
+    
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     * 
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -84,12 +92,12 @@ public class cambiarcontrasena extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -98,12 +106,12 @@ public class cambiarcontrasena extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -112,13 +120,13 @@ public class cambiarcontrasena extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Valida la contraseña";
     }// </editor-fold>
 
 }

@@ -19,19 +19,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Esta clase contiene los metodos para hacer la eliminacion de la una ciudad
+ * guardada en la tabla favoritos de la base de datos.
  *
- * @author carlo
+ * @author Andres Marlex
  */
 public class eliminarfavorito extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Este metodo hace una consulta a la base de datos para obtener el id del
+     * usuario.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param q Variable de la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return Retorna (Integer) que corresponde al id del usuario
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
     public int UserId(Statement q, String user) throws SQLException {
         String s = "select id from usuarios where nickname='" + user + "'";
@@ -41,6 +43,16 @@ public class eliminarfavorito extends HttpServlet {
         return Integer.parseInt(aux);
     }
 
+    /**
+     * Este metodo hace una consulta a la base de datos para obtener el id de la
+     * ciudad.
+     *
+     * @param q Variable de la base de datos.
+     * @param name Nombre de la ciudad que se usara para la consulta de la base
+     * de datos.
+     * @return Retorna (Integer) que corresponde al id de la ciudad.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public int CityId(Statement q, String name) throws SQLException {
         String s = "select id from ciudades where nombre='" + name + "'";
         ResultSet f = q.executeQuery(s);
@@ -49,6 +61,15 @@ public class eliminarfavorito extends HttpServlet {
         return Integer.parseInt(aux);
     }
 
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     *
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,11 +86,11 @@ public class eliminarfavorito extends HttpServlet {
 
                 int Cityid = CityId(q, city);
                 int UserId = UserId(q, user);
-                
-                String sql = "delete from favoritos where id_user='"+UserId+"' and id_ciudad='"+Cityid+"'";
+
+                String sql = "delete from favoritos where id_user='" + UserId + "' and id_ciudad='" + Cityid + "'";
                 PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
                 pst.execute();
-                
+
                 conexion.getConexion().close();
             } catch (Exception e) {
                 out.println(e);
@@ -87,12 +108,12 @@ public class eliminarfavorito extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -101,12 +122,12 @@ public class eliminarfavorito extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -115,13 +136,13 @@ public class eliminarfavorito extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Elimina una ciudad de favoritos del usuario";
     }// </editor-fold>
 
 }

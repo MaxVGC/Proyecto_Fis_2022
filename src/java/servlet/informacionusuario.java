@@ -20,19 +20,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * Esta clase contiene los metodos para hacer la consulta de los datos del
+ * usuario en la base de datos.
  *
- * @author carlo
+ * @author Andres Marlex
  */
 public class informacionusuario extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Este metodo hace una peticion a la base de datos para obtener el id del
+     * usuario.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param q Variable de la base de datos.
+     * @param user Usuario que se usara para la consulta de la base de datos.
+     * @return Retorna (Integer) que corresponde al id del usuario
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
     public int UserId(Statement q, String user) throws SQLException {
         String s = "select id from usuarios where nickname='" + user + "'";
@@ -42,11 +44,18 @@ public class informacionusuario extends HttpServlet {
         return Integer.parseInt(aux);
     }
 
+    /**
+     * Este metodo se encarga de generar un JSON con los datos del usuario
+     * obtenidos de la consulta.
+     *
+     * @param f Resultados de la consulta.
+     * @return Retorna (String) que corresponde al JSON generado con los datos
+     * del usuario.
+     * @throws java.sql.SQLException Si un error de SQL ocurre.
+     */
     public String GenerarJSON(ResultSet f) throws SQLException {
-        String aux = "";
         JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
-
         while (f.next()) {
             JSONObject innerObj = new JSONObject();
             innerObj.put("nombre", f.getString("nombre"));
@@ -58,6 +67,15 @@ public class informacionusuario extends HttpServlet {
         return obj.toJSONString();
     }
 
+    /**
+     * Este se encarga de procesar la peticion que se le hace al servlet.
+     *
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -83,12 +101,12 @@ public class informacionusuario extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Maneja el método HTTP GET.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -97,12 +115,12 @@ public class informacionusuario extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Maneja el método HTTP POST.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request servlet request.
+     * @param response servlet response.
+     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -111,13 +129,13 @@ public class informacionusuario extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Retorna una breve descripcion de la funcion del servlet.
      *
-     * @return a String containing servlet description
+     * @return Un String con la descripcion del servlet.
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Obtiene la informacion del usuario";
     }// </editor-fold>
 
 }
