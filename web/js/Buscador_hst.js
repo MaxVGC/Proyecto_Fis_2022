@@ -8,7 +8,6 @@ import { API_KEY_OpenWeather } from '../js/keys.js';
 let params = new URLSearchParams(location.search);
 
 const input = document.getElementById('input_hst');
-const log = document.getElementById('valores');
 
 var aux = 0;
 var user = params.get('n');
@@ -18,6 +17,7 @@ var historial = new Array();
 input.addEventListener('input', updateValue);
 
 function updateValue(e) {
+    console.log(e);
     var p = e.srcElement.value;
     var div = document.getElementById('sugerencias_hst');
     if (p.length >= 3) {
@@ -82,6 +82,7 @@ function OcultarDiv() {
         aux[0].classList.toggle('open');
     }
 }
+
 function GenerarLista(ele, div, div2) {
     OcultarDiv()
     input.value = "";
