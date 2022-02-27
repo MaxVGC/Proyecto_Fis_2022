@@ -25,7 +25,8 @@ function Construir() {
     document.getElementById('map_link').href = "mapa.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
     document.getElementById('username').innerHTML = user;
     document.getElementById('role').innerHTML = type;
-    if (img.toString() !== "null") {
+    console.log(img);
+    if (img !== atob("null")) {
         document.getElementById('img_perfil').src = img;
     }
 }
