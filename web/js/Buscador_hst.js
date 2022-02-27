@@ -5,14 +5,9 @@
 import { API_KEY_GOOGLE } from '../js/keys.js';
 import { API_KEY_OpenWeather } from '../js/keys.js';
 
-let params = new URLSearchParams(location.search);
-
 const input = document.getElementById('input_hst');
 
 var aux = 0;
-var user = params.get('n');
-var type = params.get('u');
-var historial = new Array();
 
 input.addEventListener('input', updateValue);
 

@@ -12,25 +12,30 @@ import java.sql.SQLException;
  * Esta clase se encarga de establecer y obtener la conexion del servlet con la
  * base de datos (PostgreSQL).
  *
- * @param url Localizacion de la base de datos, ya sea remota o local.
- * @param pass Contraseña de la base de datos.
- * @param user Usuario dueño de la base de datos.
- * @param driverDB Driver usado para establecer la conexion.
  * @author Andres Marlex
  */
 public class conexionJDBC {
 
     Connection conexion = null;
-
     String user = "awpbzdko";
     String pass = "5kVCZpOG5pMo19zAmKiFMP86TeM-EAGo";
     String driverDB = "org.postgresql.Driver";
     String url = "jdbc:postgresql://otto.db.elephantsql.com:5432/awpbzdko";
 
     /**
+     * Constructor
+     *
+     * @param user Corresponde al usuario dueño de la base de datos.
+     * @param pass Corresponde a la contraseña para la conexion de la base de
+     * datos.
+     * @param driverDB Corresponde al driver usado para la conexion.
+     */
+    public conexionJDBC() {
+    }
+    
+    /**
      * Usa los parametros user, pass, url y driverDB para establecer la conexion
      * a la pase de datos.
-     *
      * @return La conexion como tal para usar la base de datos.
      */
     public Connection conectar() {
