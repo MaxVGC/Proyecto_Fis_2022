@@ -7,9 +7,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
     <head>
         <title>Registro</title>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="description" content="Registrate para hacer uso de las demas funcionalidades de la pagina"/>
+        <meta name="author" content="MaxDVC" />
+        <meta name="copyright" content="MaxDVC" />
 
         <script type="module" src="../js/registro.js" defer></script>
         <script type="text/javascript" src="../js/mdb.min.js"></script>

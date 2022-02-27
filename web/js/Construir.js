@@ -37,4 +37,6 @@ function links() {
     document.getElementsByClassName('home_link')[0].href = "clima.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img) + "&aux=" + btoa("inicio");
     document.getElementsByClassName('hst_link')[0].href = "historico.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
     document.getElementsByClassName('pf_link')[0].href = "perfil.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+    document.getElementsByClassName('map_link').href = "mapa.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
+
 }

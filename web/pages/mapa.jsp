@@ -13,6 +13,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="description" content="Visualiza el mapa del sitio"/>
+        <meta name="author" content="MaxDVC" />
+        <meta name="copyright" content="MaxDVC" />
 
         <script type="module" src="../js/Buscador.js" defer></script>
         <script type="module" src="../js/Construir.js" defer></script>
@@ -103,7 +106,8 @@
                             <img src="../img/inicio.png" class="card-img-top" alt="Screenshot de la pagina Inicio"/>
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title">Clima</h5>
+                            <h5 class="card-title" style="display: inline">Home</h5>
+                            <i class='bx bx-home guide'></i>
                             <p class="card-text">
                                 Pagina de principal del sitio web, muestra el clima del sitio donde se encuentre,
                                 se puede llegar a ella por todas las demas paginas a excepcion de Inicio y Registro, por el buscador y entrando 
@@ -118,7 +122,8 @@
                             <img src="../img/perfil.png" class="card-img-top" alt="Screenshot de la pagina Perfil"/>                        
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title">Perfil</h5>
+                            <h5 class="card-title" style="display: inline">Perfil</h5>
+                            <i class='bx bx-user guide'></i>
                             <p class="card-text">
                                 Esta pagina muestra la informacion principal del usuario ademas de contar con la opcion de
                                 poder cambiar la contraseña. Se puede llegar a ella a traves de las demas paginas a excepcion
@@ -133,7 +138,8 @@
                             <img src="../img/historico.png" class="card-img-top" alt="Screenshot de la pagina Historico"/>                       
                         </a>                      
                         <div class="card-body">
-                            <h5 class="card-title">Historico</h5>
+                            <h5 class="card-title" style="display: inline">Historico</h5>
+                            <i class='bx bx-pie-chart-alt-2 guide'></i>
                             <p class="card-text">Muestra el historico del clima y graficas de la ciudad buscada. Se puede
                                 llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.</p>
                         </div>
@@ -147,7 +153,8 @@
                             <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
                         </a> 
                         <div class="card-body">
-                            <h5 class="card-title">Favoritos</h5>
+                            <h5 class="card-title" style="display: inline">Favoritos</h5>
+                            <i class='bx bx-heart guide'></i>
                             <p class="card-text">
                                 Muestra tus ciudades favoritas. Se puede
                                 llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.
@@ -159,7 +166,7 @@
                     <div class="card">
                         <img src="../img/login.png" class="card-img-top" alt="Screenshot de la pagina Iniciar sesion"/>                       
                         <div class="card-body">
-                            <h5 class="card-title">Inicio</h5>
+                            <h5 class="card-title">Iniciar sesion</h5>
                             <p class="card-text">
                                 Permite al usuario ingresar a la aplicacion, redirige a clima al iniciar sesion.
                             </p>
@@ -172,6 +179,22 @@
                         <div class="card-body">
                             <h5 class="card-title">Registro</h5>
                             <p class="card-text">Permite al usuario poder registrarse para ingresar a la aplicacion, se accede a ella solo por la pagina de Inicio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <a class="map_link" href="#">  
+                            <img src="../img/mapa.png" class="card-img-top" alt="Screenshot de la pagina Mapa del sitio"/>                       
+                        </a> 
+                        <div class="card-body">
+                            <h5 class="card-title" style="display: inline">Mapa del sitio</h5>
+                            <i class='bx bx-map-alt guide'></i>
+                            <p class="card-text">
+                                Muestra el mapa del sitio de la pagina.
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="description" content="Visualiza los datos historicos del clima en la ciudad deseada"/>
+        <meta name="author" content="MaxDVC" />
+        <meta name="copyright" content="MaxDVC" />
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
 
         <script type="module" src="../js/historico.js" defer></script>

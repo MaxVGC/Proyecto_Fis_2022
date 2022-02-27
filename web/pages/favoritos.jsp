@@ -13,6 +13,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="description" content="Visualiza tus ciudades guardadas en favoritos"/>
+        <meta name="author" content="MaxDVC" />
+        <meta name="copyright" content="MaxDVC" />
 
         <script type="module" src="../js/Construir.js" defer></script>
         <script type="module" src="../js/Buscador.js" defer></script>
