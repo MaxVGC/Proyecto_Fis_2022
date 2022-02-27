@@ -6,7 +6,6 @@
 
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-
     <head>
         <title>Mapa del sitio</title>
 
@@ -94,110 +93,160 @@
                 </li>
             </ul>
         </div>
-
         <div class="home-section container-fluid" style="margin:0;background-color: #242424" id='fondoi'>
-            <div class="row" style="padding-top: 10px;">
-                <center style="color:white;"><span>Mapa del sitio</span></center>
-            </div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card">
-                        <a class="home_link" href="#">
-                            <img src="../img/inicio.png" class="card-img-top" alt="Screenshot de la pagina Inicio"/>
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline">Home</h5>
-                            <i class='bx bx-home guide'></i>
-                            <p class="card-text">
-                                Pagina de principal del sitio web, muestra el clima del sitio donde se encuentre,
-                                se puede llegar a ella por todas las demas paginas a excepcion de Inicio y Registro, por el buscador y entrando 
-                                a tu ciudad guardada en favoritos.
-                            </p>
+                    <!-- Scrollspy -->
+                    <div id="scrollspy1" class="sticky-top">
+                        <div class="row" style="padding-top: 10px;">
+                            <center style="color:white;"><span>Mapa del sitio</span></center>
                         </div>
+                        <ul class="nav flex-column nav-pills menu-sidebar">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#example-0">Antes de iniciar sesion</a>
+                                <ul class="nav flex-column ps-3">
+                                    <a class="nav-link" href="#example-1">Iniciar sesion</a>
+                                    <ul class="nav flex-column ps-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#example-2">Registro</a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#example-0a">Despues de iniciar sesion</a>
+                                <ul class="nav flex-column ps-3">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#example-3">Inicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#example-4">Perfil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#example-5">Favoritos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#example-6">Historico</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#example-7">Mapa del sitio</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <a class="pf_link" href="#">                        
-                            <img src="../img/perfil.png" class="card-img-top" alt="Screenshot de la pagina Perfil"/>                        
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline">Perfil</h5>
-                            <i class='bx bx-user guide'></i>
-                            <p class="card-text">
-                                Esta pagina muestra la informacion principal del usuario ademas de contar con la opcion de
-                                poder cambiar la contraseña. Se puede llegar a ella a traves de las demas paginas a excepcion
-                                de Inicio y Registro.
-                            </p>
-                        </div>
+                <div class="col-md-8">
+                    <div
+                        data-mdb-spy="scroll"
+                        data-mdb-target="#scrollspy1"
+                        data-mdb-offset="0"
+                        class="scrollspy-example"
+                        >
+                        <section id="example-0" style="margin-top: 10px">
+                            <h5>Antes de iniciar sesion</h5>
+                        </section>
+                        <section id="example-1">
+                            <div class="card">
+                                <img src="../img/login.png" class="card-img-top" alt="Screenshot de la pagina Iniciar sesion"/>                       
+                                <div class="card-body">
+                                    <h5 class="card-title">Iniciar sesion</h5>
+                                    <p class="card-text">
+                                        Permite al usuario ingresar a la aplicacion, redirige a clima al iniciar sesion.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-2">
+                            <div class="card">
+                                <img src="../img/registro.png" class="card-img-top" alt="Screenshot de la pagina Registro"/>                       
+                                <div class="card-body">
+                                    <h5 class="card-title">Registro</h5>
+                                    <p class="card-text">Permite al usuario poder registrarse para ingresar a la aplicacion, se accede a ella solo por la pagina de Inicio</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-0a">
+                            <h5>Despues de iniciar sesion</h5>
+                        </section>
+                        <section id="example-3">
+                            <div class="card">
+                                <a class="home_link" href="#">
+                                    <img src="../img/inicio.png" class="card-img-top" alt="Screenshot de la pagina Inicio"/>
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="display: inline">Home</h5>
+                                    <i class='bx bx-home guide'></i>
+                                    <p class="card-text">
+                                        Pagina de principal del sitio web, muestra el clima del sitio donde se encuentre,
+                                        se puede llegar a ella por todas las demas paginas a excepcion de Inicio y Registro, por el buscador y entrando 
+                                        a tu ciudad guardada en favoritos.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-4">
+                            <div class="card">
+                                <a class="pf_link" href="#">                        
+                                    <img src="../img/perfil.png" class="card-img-top" alt="Screenshot de la pagina Perfil"/>                        
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="display: inline">Perfil</h5>
+                                    <i class='bx bx-user guide'></i>
+                                    <p class="card-text">
+                                        Esta pagina muestra la informacion principal del usuario ademas de contar con la opcion de
+                                        poder cambiar la contraseña. Se puede llegar a ella a traves de las demas paginas a excepcion
+                                        de Inicio y Registro.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-5">
+                            <div class="card">
+                                <a class="fav_link" href="#">  
+                                    <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
+                                </a> 
+                                <div class="card-body">
+                                    <h5 class="card-title" style="display: inline">Favoritos</h5>
+                                    <i class='bx bx-heart guide'></i>
+                                    <p class="card-text">
+                                        Muestra tus ciudades favoritas. Se puede
+                                        llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-6">
+                            <div class="card">
+                                <a class="hst_link" href="#">  
+                                    <img src="../img/historico.png" class="card-img-top" alt="Screenshot de la pagina Historico"/>                       
+                                </a>                      
+                                <div class="card-body">
+                                    <h5 class="card-title" style="display: inline">Historico</h5>
+                                    <i class='bx bx-pie-chart-alt-2 guide'></i>
+                                    <p class="card-text">Muestra el historico del clima y graficas de la ciudad buscada. Se puede
+                                        llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="example-7">
+                            <div class="card">
+                                <a class="map_link" href="#">  
+                                    <img src="../img/mapa.png" class="card-img-top" alt="Screenshot de la pagina Mapa del sitio"/>                       
+                                </a> 
+                                <div class="card-body">
+                                    <h5 class="card-title" style="display: inline">Mapa del sitio</h5>
+                                    <i class='bx bx-map-alt guide'></i>
+                                    <p class="card-text">
+                                        Muestra el mapa del sitio de la pagina.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
                     </div>
+                    <!-- Spied element -->
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <a class="hst_link" href="#">  
-                            <img src="../img/historico.png" class="card-img-top" alt="Screenshot de la pagina Historico"/>                       
-                        </a>                      
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline">Historico</h5>
-                            <i class='bx bx-pie-chart-alt-2 guide'></i>
-                            <p class="card-text">Muestra el historico del clima y graficas de la ciudad buscada. Se puede
-                                llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <a class="fav_link" href="#">  
-                            <img src="../img/favoritos.png" class="card-img-top" alt="Screenshot de la pagina Favoritos"/>                       
-                        </a> 
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline">Favoritos</h5>
-                            <i class='bx bx-heart guide'></i>
-                            <p class="card-text">
-                                Muestra tus ciudades favoritas. Se puede
-                                llegar a ella a traves de las demas paginas a excepcion de Inicio y Registro.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="../img/login.png" class="card-img-top" alt="Screenshot de la pagina Iniciar sesion"/>                       
-                        <div class="card-body">
-                            <h5 class="card-title">Iniciar sesion</h5>
-                            <p class="card-text">
-                                Permite al usuario ingresar a la aplicacion, redirige a clima al iniciar sesion.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="../img/registro.png" class="card-img-top" alt="Screenshot de la pagina Registro"/>                       
-                        <div class="card-body">
-                            <h5 class="card-title">Registro</h5>
-                            <p class="card-text">Permite al usuario poder registrarse para ingresar a la aplicacion, se accede a ella solo por la pagina de Inicio</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <a class="map_link" href="#">  
-                            <img src="../img/mapa.png" class="card-img-top" alt="Screenshot de la pagina Mapa del sitio"/>                       
-                        </a> 
-                        <div class="card-body">
-                            <h5 class="card-title" style="display: inline">Mapa del sitio</h5>
-                            <i class='bx bx-map-alt guide'></i>
-                            <p class="card-text">
-                                Muestra el mapa del sitio de la pagina.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </body>
