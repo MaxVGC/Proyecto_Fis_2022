@@ -1,4 +1,3 @@
-import { API_KEY_OpenWeather } from '../js/keys.js';
 var divs = '';
 let params = new URLSearchParams(location.search);
 var user = atob(params.get('n'));

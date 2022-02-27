@@ -7,7 +7,6 @@ import { API_KEY_GOOGLE } from '../js/keys.js';
 let params = new URLSearchParams(location.search);
 
 const input = document.querySelector('input');
-const log = document.getElementById('valores');
 
 var aux = 0;
 var user = params.get('n');

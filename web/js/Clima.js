@@ -41,21 +41,10 @@ function IdentificarProcedencia() {
     }
 }
 
-FavBtn.addEventListener("click", () => {
-    if (document.querySelector("#btn_fav.bx.bx-heart")) {
-        document.getElementById("btn_fav").className = "bx bxs-heart";
-        $.get('../registrarfavorito?lat=' + lat + '&lng=' + lng + '&city=' + city + '&user=' + user, function (data) {
-            alert(data);
-        });
-    } else if (document.querySelector("#btn_fav.bx.bxs-heart")) {
-        document.getElementById("btn_fav").className = "bx bx-heart";
-        $.get('../eliminarfavorito?&city=' + city + '&user=' + user, function (data) {
-            alert(data);
-        });
-    }
-});
+
 
 function ValidarFavorito(name) {
+    console.log(name+"f1")
     $.get('../validarfavorito?city=' + name + '&user=' + user, function (data) {
         if (data == 1) {
             document.getElementById("btn_fav").className = "bx bxs-heart";
@@ -68,12 +57,11 @@ function ValidarFavorito(name) {
 function ObtenerLatLngId(id) {
     fetch("https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=" + id + "&key=" + API_KEY_GOOGLE)
             .then((res) => res.json()).then(data => {
-        var lat = data.result.geometry.location.lat;
-        var lng = data.result.geometry.location.lng;
-        city = data.result.address_components[0].long_name;
-        var cname = data.result.formatted_address;
+        lat = data.result.geometry.location.lat;
+        lng = data.result.geometry.location.lng;
+        city = data.result.formatted_address;
         document.title = "Busqueda - " + city;
-        ValidarFavorito(cname);
+        ValidarFavorito(city);
         ObtenerDatosClima(lat, lng);
         ObtenerPronostico(lat, lng);
         ObtenerCalidadDelAire(lat, lng)
@@ -192,3 +180,18 @@ function icons(i, icon) {
     var id = 'iconC' + i;
     document.getElementById(id).style.backgroundImage = "url('https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/" + icon + ".png')";
 }
+
+FavBtn.addEventListener("click", () => {
+    if (document.querySelector("#btn_fav.bx.bx-heart")) {
+        document.getElementById("btn_fav").className = "bx bxs-heart";
+        console.log(lat);
+        $.get('../registrarfavorito?lat=' + lat + '&lng=' + lng + '&city=' + city + '&user=' + user, function (data) {
+            alert(data);
+        });
+    } else if (document.querySelector("#btn_fav.bx.bxs-heart")) {
+        document.getElementById("btn_fav").className = "bx bx-heart";
+        $.get('../eliminarfavorito?&city=' + city + '&user=' + user, function (data) {
+            alert(data);
+        });
+    }
+});
