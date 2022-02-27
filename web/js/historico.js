@@ -1,12 +1,5 @@
 import { API_KEY_OpenWeather } from '../js/keys.js';
 
-
-let params = new URLSearchParams(location.search);
-
-var divs = '';
-var user = atob(params.get('n'));
-var type = atob(params.get('u'));
-var img = atob(params.get('i'));
 var myChart = null;
 var myChart_2 = null;
 

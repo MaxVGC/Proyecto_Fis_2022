@@ -1,21 +1,11 @@
 import { API_KEY_GOOGLE } from '../js/keys.js';
 import { API_KEY_OpenWeather } from '../js/keys.js';
 
-ciudad();
+posicion();
 obtenerclima()
 
-function Lugares() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," + position.coords.longitude + "&language=es&key=" + API_KEY_GOOGLE)
-                .then((res) => res.json()).then(data => {
-                    console.log("Ciudad " + "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + position.coords.latitude + "," + position.coords.longitude + "&language=es&key=" + API_KEY_GOOGLE);
-                });
-        });
-    }
-}
 
-function ciudad() {
+function posicion() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&appid=" + API_KEY_OpenWeather)
