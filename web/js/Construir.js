@@ -25,9 +25,12 @@ function Construir() {
     document.getElementById('map_link').href = "mapa.jsp?n=" + btoa(user) + "&u=" + btoa(type) + "&i=" + btoa(img);
     document.getElementById('username').innerHTML = user;
     document.getElementById('role').innerHTML = type;
-    console.log(img);
     if (img !== atob("null")) {
-        document.getElementById('img_perfil').src = img;
+        try {
+            document.getElementById('img_perfil').src = img;
+        } catch (error) {
+            document.getElementById('img_perfil').src = "../img/prueba.png";
+        }
     }
 }
 

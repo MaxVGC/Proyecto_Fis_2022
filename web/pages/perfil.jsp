@@ -126,26 +126,26 @@
                     <div class="row" style="padding-top: 10px">
                         <div class="col-md-6" >
                             <div style="width:100%;display: flex;justify-content: center">
-                                <input type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Nueva contraseña" required/>
+                                <input type="password" autocomplete="off"  class="input-custom input_CambioContrasena" placeholder="Nueva contraseña" required/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div style="width:100%;display: flex;justify-content: center">
-                                <input type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Confirmar contraseña" required/>
+                                <input type="password" autocomplete="off"  class="input-custom input_CambioContrasena" placeholder="Confirmar contraseña" required/>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 10px">
                         <div class="col-md-12" >
                             <div style="width:100%;display: flex;justify-content: center">
-                                <input style="margin-top: 0" type="password" autocomplete="off"  class="input-custom input_CambioContraseña" placeholder="Antigua contraseña" required/>
+                                <input style="margin-top: 0" type="password" autocomplete="off"  class="input-custom input_CambioContrasena" placeholder="Antigua contraseña" required/>
                             </div>
-                            <center style="margin-top: 10px"><span style="color:red;font-size: 10px;" id="span_ValidacionContraseña"></span></center>
+                            <center style="margin-top: 10px"><span style="color:red;font-size: 10px;" id="span_ValidacionContrasena"></span></center>
                         </div> 
                     </div>
                     <div class="row" style="padding-top: 10px">
                         <div class="col-md-12" >
-                            <button id="btn_CambioContraseña" class="btn btn-primary btn-grad" >Aceptar</button>
+                            <button id="btn_CambioContrasena" class="btn btn-primary btn-grad" >Aceptar</button>
                         </div> 
                     </div>
                 </div>
