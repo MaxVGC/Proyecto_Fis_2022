@@ -4,13 +4,13 @@
  */
 package model;
 
+import datos.Cifrador;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class Ejemplo2 {
 
@@ -18,7 +18,8 @@ public class Ejemplo2 {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.println(prueba(1));
+        Querys q = new Querys();
+        System.out.println(prueba( q,"pkmn3612","MaxVGC"));
     }
 
 //    List res = q.Query("select u.id as id_user, c.id as id_ciudad from Usuarios u,Ciudades c where u.id=c.id");
@@ -28,15 +29,22 @@ public class Ejemplo2 {
 //        System.out.println("Department Number : " + object[0]
 //                + " Salary : " + object[1]);
 //    }
-    public static int prueba(int id) {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
-        String qryString = "delete from Event s where s.id=" + id;
-        Query query = session.createQuery(qryString);
-        int count = query.executeUpdate();
-
-        return count;
+    public static boolean prueba(Querys q, String antigua, String user) {
+        try {
+            String s = "select a.password from Usuarios a where a.nickname='" + user + "'";
+            List a = q.Query(s);
+            Cifrador n = new Cifrador();
+            Iterator it = a.iterator();
+            String object = (String) it.next();
+            if (object.equals(n.hash(antigua))) {
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Ejemplo2.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
     private int Insert(String title, Date theDate) {
@@ -58,8 +66,4 @@ public class Ejemplo2 {
 //Querys q = new Querys();
 //        List a = q.QueryFavoritos(1);
 //        Iterator it = a.iterator();
-//        while (it.hasNext()) {
-//            Object[] object = (Object[]) it.next();
-//            System.out.println("Department Number : " + object[0]
-//                    + " Salary : " + object[1]);
-//        }
+
