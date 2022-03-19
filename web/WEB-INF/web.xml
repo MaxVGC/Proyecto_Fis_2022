@@ -40,6 +40,10 @@
         <servlet-name>cambiarcontrasena</servlet-name>
         <servlet-class>servlet.cambiarcontrasena</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>H</servlet-name>
+        <servlet-class>model.H</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlador</servlet-name>
         <url-pattern>/controlador</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>cambiarcontrasena</servlet-name>
         <url-pattern>/cambiarcontrasena</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>H</servlet-name>
+        <url-pattern>/H</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

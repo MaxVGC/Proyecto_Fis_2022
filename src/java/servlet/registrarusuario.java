@@ -4,22 +4,24 @@
  */
 package servlet;
 
-import datos.conexionJDBC;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import datos.Cifrador;
-import java.sql.PreparedStatement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.HibernateUtil;
+import model.Querys;
+import model.Usuarios;
+import model.Usuarios_Google;
+import org.hibernate.Session;
 
 /**
  *
@@ -36,10 +38,11 @@ public class registrarusuario extends HttpServlet {
      * @return Retorna (Boolean)
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public boolean existeUsuario(Statement q, String user) throws SQLException {
-        String s = "select nickname from usuarios where nickname='" + user + "'";
-        ResultSet f = q.executeQuery(s);
-        if (f.next()) {
+    public boolean existeUsuario(Querys q, String user) throws SQLException {
+        String s = "select a.nickname from Usuarios a where a.nickname='" + user + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        if (it.hasNext()) {
             return true;
         } else {
             return false;
@@ -53,15 +56,16 @@ public class registrarusuario extends HttpServlet {
      * @return Retorna (Integer) que corresponde al id libre.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public int ObtenerIdLibre(Statement q) throws SQLException {
-        System.out.println("Entre");
-        String s = "select id from usuarios order by id desc ";
-        ResultSet f = q.executeQuery(s);
-        if (f.next() == false) {
-            return 1;
-        } else {
-            return Integer.parseInt(f.getString("id")) + 1;
+    public int ObtenerIdLibre(Querys q) throws SQLException {
+        String s = "select a.id from Usuarios a order by a.id desc ";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        int aux = 0;
+        if (it.hasNext()) {
+            int object = (int) it.next();
+            aux = object;
         }
+        return aux + 1;
     }
 
     /**
@@ -92,19 +96,16 @@ public class registrarusuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        conexionJDBC conexion = new conexionJDBC();
-        PrintWriter out = response.getWriter();
-
         try {
             Cifrador n = new Cifrador();
             response.setContentType("text/html;charset=UTF-8");
-            conexion.conectar();
-            Statement q = conexion.getConexion().createStatement();
+            Querys q = new Querys();
 
             String user = request.getParameter("user");
             String rol = request.getParameter("rol");
             String url = request.getParameter("URL");
             String b[] = url.split("registro.jsp");
+
             if (!existeUsuario(q, user)) {
                 int id = ObtenerIdLibre(q);
                 String name = Mayusculas(request.getParameter("name"));
@@ -114,21 +115,24 @@ public class registrarusuario extends HttpServlet {
                     apell = " ";
                 }
                 String email = request.getParameter("email");
-
                 if (rol.equals("1")) {
-                    String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo,rol) VALUES (" + id + ",'" + user + "','" + pass + "','" + name + "','" + apell + "','" + email + "'," + rol + ")";
-                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
-                    pst.execute();
+                    Usuarios u = new Usuarios(id, user, pass, name, apell, email, Integer.parseInt(rol));
+                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+                    session.beginTransaction();
+                    session.save(u);
+                    session.getTransaction().commit();
+                    session.close();
                 } else {
-                    String image = request.getParameter("image");
                     String id_google = request.getParameter("id_google");
-                    String sql = "INSERT INTO usuarios (id,nickname,password,nombre,apellido,correo,rol) VALUES (" + id + ",'" + user + "','" + pass + "','" + name + "','" + apell + "','" + email + "'," + rol + ")";
-                    System.out.println(sql);
-                    String sql2 = "INSERT INTO usuarios_google (id,id_google,image) VALUES (" + id + ",'" + id_google + "','" + image + "')";
-                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
-                    pst.execute();
-                    pst = conexion.getConexion().prepareStatement(sql2);
-                    pst.execute();
+                    String image = request.getParameter("image");
+                    Usuarios u = new Usuarios(id, user, pass, name, apell, email, Integer.parseInt(rol));
+                    Usuarios_Google u2 = new Usuarios_Google(id, id_google, image);
+                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+                    session.beginTransaction();
+                    session.save(u);
+                    session.save(u2);
+                    session.getTransaction().commit();
+                    session.close();
                 }
                 response.sendRedirect("index.html?alert=2");
             } else {
@@ -138,7 +142,6 @@ public class registrarusuario extends HttpServlet {
                     response.sendRedirect("pages/registro.jsp" + b[1] + "&alert=0");
                 }
             }
-            conexion.getConexion().close();
         } catch (Exception ex) {
             Logger.getLogger(registrarusuario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -151,7 +154,8 @@ public class registrarusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
@@ -165,7 +169,8 @@ public class registrarusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override

@@ -4,18 +4,16 @@
  */
 package servlet;
 
-import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Iterator;
+import java.util.List;
+import model.Querys;
 
 /**
  * Esta clase contiene los metodos para verificar la existencia de la ciudad por
@@ -34,12 +32,16 @@ public class validarfavorito extends HttpServlet {
      * @return Retorna (Integer) que corresponde al id del usuario
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public int UserId(Statement q, String user) throws SQLException {
-        String s = "select id from usuarios where nickname='" + user + "'";
-        ResultSet f = q.executeQuery(s);
-        f.next();
-        String aux = f.getString("id").replace(" ", "");
-        return Integer.parseInt(aux);
+    public int UserId(Querys q, String user) throws SQLException {
+        String s = "select a.id from Usuarios a where a.nickname='" + user + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        int aux = 0;
+        while (it.hasNext()) {
+            int object = (int) it.next();
+            aux = object;
+        }
+        return aux;
     }
 
     /**
@@ -52,12 +54,16 @@ public class validarfavorito extends HttpServlet {
      * @return Retorna (Integer) que corresponde al id de la ciudad.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public int CityId(Statement q, String name) throws SQLException {
-        String s = "select id from ciudades where nombre='" + name + "'";
-        ResultSet f = q.executeQuery(s);
-        f.next();
-        String aux = f.getString("id").replace(" ", "");
-        return Integer.parseInt(aux);
+    public int CityId(Querys q, String name) throws SQLException {
+        String s = "select a.id from Ciudades a where a.nombre='" + name + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        int aux = 0;
+        while (it.hasNext()) {
+            int object = (int) it.next();
+            aux = object;
+        }
+        return aux;
     }
 
     /**
@@ -76,34 +82,23 @@ public class validarfavorito extends HttpServlet {
         String user = request.getParameter("user");
         String city = request.getParameter("city");
 
-        conexionJDBC conexion = new conexionJDBC();
-
         try (PrintWriter out = response.getWriter()) {
             try {
-                conexion.conectar();
-                Statement q = conexion.getConexion().createStatement();
+                Querys q = new Querys();
 
                 int Cityid = CityId(q, city);
                 int UserId = UserId(q, user);
 
-                String sql = "select count(*) from favoritos where id_user=" + UserId + " and id_ciudad=" + Cityid;
-                ResultSet f = q.executeQuery(sql);
-                f.next();
-                if (f.getInt("count") == 0) {
-                    out.println(0);
-                } else {
+                String s = "select count(a) from Favoritos a where a.id_user=" + UserId + " and a.id_ciudad=" + Cityid;
+                List res = q.Query(s);
+                Iterator it = res.iterator();                
+                if (it.hasNext()) {
                     out.println(1);
+                } else {
+                    out.println(0);
                 }
-
-                conexion.getConexion().close();
             } catch (Exception e) {
-                out.println(e);
-                System.out.println(e);
-                try {
-                    conexion.getConexion().close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
             }
         }
     }
@@ -114,7 +109,8 @@ public class validarfavorito extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
@@ -128,7 +124,8 @@ public class validarfavorito extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override

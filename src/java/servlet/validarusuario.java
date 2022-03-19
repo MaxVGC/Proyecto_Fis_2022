@@ -5,18 +5,18 @@
 package servlet;
 
 import datos.Cifrador;
-import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Querys;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -35,19 +35,15 @@ public class validarusuario extends HttpServlet {
      * del usuario, si el usuario no existe retorna un JSON vacio.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String GenerarJSON(ResultSet f) throws SQLException {
+    public String GenerarJSON(String[] f) throws SQLException {
         Cifrador n = new Cifrador();
         JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
         JSONObject innerObj = new JSONObject();
-
-        while (f.next()) {
-            innerObj.put("nickname", n.codificarB64(f.getString("nickname")));
-            innerObj.put("rol", n.codificarB64(f.getString("rol")));
-            innerObj.put("image", n.codificarB64(f.getString("image")));
-            list.add(innerObj);
-        }
-
+        innerObj.put("nickname", n.codificarB64(f[0]));
+        innerObj.put("rol", n.codificarB64(f[1]));
+        innerObj.put("image", n.codificarB64(f[2]));
+        list.add(innerObj);
         obj.put("datos", list);
         return obj.toJSONString();
     }
@@ -62,11 +58,23 @@ public class validarusuario extends HttpServlet {
      * del usuario, si el usuario no existe retorna un JSON vacio.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String existeUsuarioGoogle(Statement q, String id_google) throws SQLException {
-        String s = "select usuarios.nickname, roles.rol,usuarios_google.image from usuarios,roles,usuarios_google where usuarios_google.id=usuarios.id and usuarios.rol=roles.id and usuarios_google.id_google='" + id_google + "'";
-        ResultSet f = q.executeQuery(s);
-        String json = GenerarJSON(f);
-        return json;
+    public String existeUsuarioGoogle(Querys q, String id_google) throws SQLException {
+        String s = "select a.nickname, b.rol,c.image from Usuarios a,Roles b,Usuarios_Google c where c.id=a.id and a.rol=b.id and c.id_google='" + id_google + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        String[] aux = {"", "", ""};
+        if (it.hasNext()) {
+            while (it.hasNext()) {
+                Object[] object = (Object[]) it.next();
+                aux[0] = object[0].toString();
+                aux[1] = object[1].toString();
+                aux[2] = object[2].toString();
+            }
+            String json = GenerarJSON(aux);
+            return json;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -79,11 +87,16 @@ public class validarusuario extends HttpServlet {
      * del usuario.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String TraerFoto(Statement q, String user) throws SQLException {
-        String s = "select image from usuarios, usuarios_google where usuarios.id=usuarios_google.id and usuarios.nickname='" + user + "'";
-        ResultSet f = q.executeQuery(s);
-        f.next();
-        return f.getString("image");
+    public String TraerFoto(Querys q, String user) throws SQLException {
+        String s = "select c.image from Usuarios a,Usuarios_Google c where c.id=a.id and a.nickname='" + user + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        String aux = null;
+        while (it.hasNext()) {
+            String object = (String) it.next();
+            aux = object;
+        }
+        return aux;
     }
 
     /**
@@ -96,14 +109,17 @@ public class validarusuario extends HttpServlet {
      * usuario, en dado caso que no exista este retornara null del usuario.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String[] existeUsuario(Statement q, String user) throws SQLException {
-        String s = "select usuarios.password, roles.rol from usuarios,roles where usuarios.rol=roles.id and nickname='" + user + "'";
-        ResultSet f = q.executeQuery(s);
-        String[] aux = {"a", "a"};
-        ResultSet aux2 = f;
-        if (aux2.next()) {
-            aux[0] = f.getString("password");
-            aux[1] = f.getString("Rol");
+    public String[] existeUsuario(Querys q, String user) throws SQLException {
+        String s = "select a.password, b.rol from Usuarios a,Roles b where a.rol=b.id and a.nickname='" + user + "'";
+        List res = q.Query(s);
+        Iterator it = res.iterator();
+        String[] aux = {"", ""};
+        if (it.hasNext()) {
+            while (it.hasNext()) {
+                Object[] object = (Object[]) it.next();
+                aux[0] = object[0].toString();
+                aux[1] = object[1].toString();
+            }
             return aux;
         } else {
             return null;
@@ -125,13 +141,11 @@ public class validarusuario extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
 
-            conexionJDBC conexion = new conexionJDBC();
             Cifrador n = new Cifrador();
 
             String aux = request.getParameter("aux");
 
-            conexion.conectar();
-            Statement q = conexion.getConexion().createStatement();
+            Querys q = new Querys();
 
             if (aux.equals("1")) {
                 String user = request.getParameter("user");
@@ -155,7 +169,6 @@ public class validarusuario extends HttpServlet {
                 String id_google = request.getParameter("id_google");
                 out.write(existeUsuarioGoogle(q, id_google));;
             }
-            conexion.getConexion().close();
         } catch (SQLException ex) {
             Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -170,7 +183,8 @@ public class validarusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
@@ -184,7 +198,8 @@ public class validarusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override

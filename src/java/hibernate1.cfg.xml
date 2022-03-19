@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://otto.db.elephantsql.com:5432/awpbzdko</property>
+        <property name="connection.username">awpbzdko</property>
+        <property name="connection.password">5kVCZpOG5pMo19zAmKiFMP86TeM-EAGo</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <mapping resource="model/Ciudades.hbm.xml"/>
+        <mapping resource="model/Roles.hbm.xml"/>
+        <mapping resource="model/Event.hbm.xml"/>
+        <mapping resource="model/Usuarios.hbm.xml"/>
+        <mapping resource="model/Usuarios_google.hbm.xml"/>
+        <mapping resource="model/Favoritos.hbm.xml"/>
+    </session-factory>
+
+</hibernate-configuration>

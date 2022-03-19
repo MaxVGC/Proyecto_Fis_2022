@@ -4,18 +4,18 @@
  */
 package servlet;
 
-import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Querys;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,43 +28,33 @@ import org.json.simple.JSONObject;
 public class informacionusuario extends HttpServlet {
 
     /**
-     * Este metodo hace una peticion a la base de datos para obtener el id del
-     * usuario.
-     *
-     * @param q Variable de la base de datos.
-     * @param user Usuario que se usara para la consulta de la base de datos.
-     * @return Retorna (Integer) que corresponde al id del usuario
-     * @throws java.sql.SQLException Si un error de SQL ocurre.
-     */
-    public int UserId(Statement q, String user) throws SQLException {
-        String s = "select id from usuarios where nickname='" + user + "'";
-        ResultSet f = q.executeQuery(s);
-        f.next();
-        String aux = f.getString("id").replace(" ", "");
-        return Integer.parseInt(aux);
-    }
-
-    /**
      * Este metodo se encarga de generar un JSON con los datos del usuario
      * obtenidos de la consulta.
      *
-     * @param f Resultados de la consulta.
+     * @param it Resultados de la consulta.
      * @return Retorna (String) que corresponde al JSON generado con los datos
      * del usuario.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String GenerarJSON(ResultSet f) throws SQLException {
+    public String GenerarJSON(Iterator it) throws SQLException {
+        
         JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
-        while (f.next()) {
+        
+        while (it.hasNext()) {
+            
+            Object[] object = (Object[]) it.next();
             JSONObject innerObj = new JSONObject();
-            innerObj.put("nombre", f.getString("nombre"));
-            innerObj.put("apellido", f.getString("apellido"));
-            innerObj.put("correo", f.getString("correo"));
+            innerObj.put("nombre", object[0]);
+            innerObj.put("apellido", object[1]);
+            innerObj.put("correo", object[2]);
             list.add(innerObj);
+            
         }
+        
         obj.put("datos", list);
         return obj.toJSONString();
+        
     }
 
     /**
@@ -81,20 +71,20 @@ public class informacionusuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String user = request.getParameter("user");
-        conexionJDBC conexion = new conexionJDBC();
 
         try (PrintWriter out = response.getWriter()) {
-            conexion.conectar();
-            Statement q = conexion.getConexion().createStatement();
-            String sql = "select * from usuarios where nickname='" + user + "'";
-            ResultSet f = q.executeQuery(sql);
 
-            String json = GenerarJSON(f);
+            Querys q = new Querys();
+            String s = "select a.nombre, a.apellido, a.correo from Usuarios a where a.nickname='" + user + "'";
+            List res = q.Query(s);
+            Iterator it = res.iterator();
+            String json = GenerarJSON(it);
             out.println(json);
-            conexion.getConexion().close();
 
         } catch (SQLException ex) {
+            
             Logger.getLogger(informacionusuario.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
     }
@@ -105,7 +95,8 @@ public class informacionusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override
@@ -119,7 +110,8 @@ public class informacionusuario extends HttpServlet {
      *
      * @param request servlet request.
      * @param response servlet response.
-     * @throws jakarta.servlet.ServletException Si se produce un error específico del servlet.
+     * @throws jakarta.servlet.ServletException Si se produce un error
+     * específico del servlet.
      * @throws java.io.IOException Si un error de I/O ocurre.
      */
     @Override

@@ -4,19 +4,16 @@
  */
 package servlet;
 
-import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Iterator;
+import java.util.List;
+import model.Querys;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -32,25 +29,28 @@ public class mostrarfavoritos extends HttpServlet {
      * Este metodo se encarga de generar un JSON con los datos de la ciudades
      * obtenidos de la consulta.
      *
-     * @param f Resultados de la consulta.
+     * @param it Resultados de la consulta.
      * @return Retorna (String) que corresponde al JSON generado con los datos
      * del usuario.
      * @throws java.sql.SQLException Si un error de SQL ocurre.
      */
-    public String GenerarJSON(ResultSet f) throws SQLException {
-        String aux = "";
+    public String GenerarJSON(Iterator it) throws SQLException {
+        
         JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
 
-        while (f.next()) {
+        while (it.hasNext()) {
+            Object[] object = (Object[]) it.next();
             JSONObject innerObj = new JSONObject();
-            innerObj.put("ciudad", f.getString("nombre"));
-            innerObj.put("latitud", f.getString("latitud"));
-            innerObj.put("longitud", f.getString("longitud"));
+            innerObj.put("ciudad", object[0]);
+            innerObj.put("latitud", object[1]);
+            innerObj.put("longitud", object[2]);
             list.add(innerObj);
         }
+        
         obj.put("favoritos", list);
         return obj.toJSONString();
+        
     }
 
     /**
@@ -68,29 +68,22 @@ public class mostrarfavoritos extends HttpServlet {
 
         String user = request.getParameter("user");
 
-        conexionJDBC conexion = new conexionJDBC();
-
         try (PrintWriter out = response.getWriter()) {
+            
             try {
-                conexion.conectar();
-                Statement q = conexion.getConexion().createStatement();
 
-                String sql = "select ciudades.nombre,ciudades.latitud,ciudades.longitud from usuarios,favoritos,ciudades where usuarios.id=favoritos.id_user and favoritos.id_ciudad=ciudades.id and usuarios.nickname='" + user + "'";
-                ResultSet f = q.executeQuery(sql);
-
-                String json = GenerarJSON(f);
+                Querys q = new Querys();
+                String s = "select c.nombre,c.latitud,c.longitud from Usuarios a,Favoritos b,Ciudades c where a.id=b.id_user and b.id_ciudad=c.id and a.nickname='" + user + "'";
+                List res = q.Query(s);
+                Iterator it = res.iterator();
+                String json = GenerarJSON(it);
                 out.println(json);
-                conexion.getConexion().close();
+
             } catch (Exception e) {
+
                 out.println(e);
-                System.out.println(e);
-                try {
-                    conexion.getConexion().close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(validarusuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
-            //out.println(data);
         }
     }
 
