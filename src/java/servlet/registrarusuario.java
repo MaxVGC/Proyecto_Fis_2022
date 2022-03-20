@@ -121,7 +121,6 @@ public class registrarusuario extends HttpServlet {
                     session.beginTransaction();
                     session.save(u);
                     session.getTransaction().commit();
-                    session.close();
                 } else {
                     String id_google = request.getParameter("id_google");
                     String image = request.getParameter("image");
@@ -132,7 +131,6 @@ public class registrarusuario extends HttpServlet {
                     session.save(u);
                     session.save(u2);
                     session.getTransaction().commit();
-                    session.close();
                 }
                 response.sendRedirect("index.html?alert=2");
             } else {

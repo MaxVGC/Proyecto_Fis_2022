@@ -6,6 +6,9 @@ package model;
 
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -34,7 +37,7 @@ public class Querys {
         }
         return result;
     }
-    
+
     public List<Usuarios> QueryUsuarios(String opc) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -45,7 +48,7 @@ public class Querys {
         }
         return result;
     }
-    
+
     public List<Usuarios_Google> QueryUsuarios_Google(String opc) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -56,22 +59,32 @@ public class Querys {
         }
         return result;
     }
-    
+
     public List QueryFavoritos(int opc) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List result =  session.createQuery("select c.id_user , c.id_ciudad from Usuarios u,Favoritos c where u.id=c.id_user and u.id=" + opc).list();
+        List result = session.createQuery("select c.id_user , c.id_ciudad from Usuarios u,Favoritos c where u.id=c.id_user and u.id=" + opc).list();
         session.getTransaction().commit();
         return result;
     }
-    
+
     public List Query(String opc) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        List result =   session.createQuery(opc).list();
+        List result = session.createQuery(opc).list();
         session.getTransaction().commit();
-        session.close();
         return result;
+    }
+
+    public String Query2(String opc) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery(opc);
+        int count = query.executeUpdate();
+        transaction.commit();
+        session.clear();
+        return count+"";
     }
 
 }

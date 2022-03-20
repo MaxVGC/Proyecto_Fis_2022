@@ -81,12 +81,9 @@ public class cambiarcontrasena extends HttpServlet {
             Querys q = new Querys();
 
             if (ValidarContrasena(q, n, antigua, user)) {
-                SessionFactory factory = HibernateUtil.getSessionFactory();
-                Session session = factory.openSession();
-                Transaction transaction = session.beginTransaction();
+                
                 String s = "update Usuarios a set a.password='" + n.hash(nueva) + "' where a.nickname='" + user + "'";
-                Query query = session.createQuery(s);
-                int count = query.executeUpdate();
+                q.Query2(s);
                 out.println("1");
             } else {
                 out.println("0");

@@ -16,6 +16,7 @@
         <servlet-name>registrarfavorito</servlet-name>
         <servlet-class>servlet.registrarfavorito</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>eliminarfavorito</servlet-name>
         <servlet-class>servlet.eliminarfavorito</servlet-class>

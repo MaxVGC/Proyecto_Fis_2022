@@ -4,15 +4,21 @@
  */
 package servlet;
 
+import datos.conexionJDBC;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.Year;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Ciudades;
 import model.Favoritos;
 import model.HibernateUtil;
@@ -126,43 +132,46 @@ public class registrarfavorito extends HttpServlet {
         String lat = request.getParameter("lat");
         String lng = request.getParameter("lng");
 
-        try (PrintWriter out = response.getWriter()) {
+        conexionJDBC conexion = new conexionJDBC();
+        Querys q = new Querys();
+
+        try ( PrintWriter out = response.getWriter()) {
             try {
-                
-                Querys q = new Querys();
+                conexion.conectar();
+                Statement q1= conexion.getConexion().createStatement();
+
                 int UserId = UserId(q, user);
 
                 if (isExist(q, city)) {
 
                     int CityId = CityId(q, city);
-                    Favoritos u = new Favoritos(UserId, CityId);
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    session.beginTransaction();
-                    session.save(u);
-                    session.getTransaction().commit();
-                    session.close();
+
+                    String sql = "INSERT INTO favoritos (id_user,id_ciudad) VALUES (" + UserId + "," + CityId + ")";
+                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
+                    pst.execute();
 
                 } else {
+                    int id = Id(q);
+                    String sql = "INSERT INTO ciudades (id,nombre,latitud,longitud) VALUES (" + id + ",'" + city + "','" + lat + "','" + lng + "')";
+                    PreparedStatement pst = conexion.getConexion().prepareStatement(sql);
+                    pst.execute();
+                    sql = "INSERT INTO favoritos (id_user,id_ciudad) VALUES (" + UserId + "," + id + ")";
+                    pst = conexion.getConexion().prepareStatement(sql);
+                    pst.execute();
 
-                    int CityId = Id(q);
-                    Favoritos u = new Favoritos(UserId, CityId);
-                    Ciudades u2 = new Ciudades(CityId, city, lat,lng);
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    session.beginTransaction();
-                    session.save(u);
-                    session.save(u2);
-                    session.getTransaction().commit();
-                    session.close();
-                    
                 }
-                
+                conexion.getConexion().close();
             } catch (Exception e) {
-                
-                out.println(e);
-                System.out.println(e);
-                
+                try {
+                    out.println(e);
+                    System.out.println(e);
+                    conexion.getConexion().close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(registrarfavorito.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            out.println("Se ha agregado la ciudad " + request.getParameter("city") + " a tus favoritos");
+            String data = "Se ha agregado la ciudad " + request.getParameter("city") + " a tus favoritos";
+            out.println(data);
         }
     }
 

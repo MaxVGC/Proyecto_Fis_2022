@@ -87,19 +87,16 @@ public class eliminarfavorito extends HttpServlet {
         String user = request.getParameter("user");
         String city = request.getParameter("city");
 
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             try {
                 Querys q = new Querys();
 
                 int Cityid = CityId(q, city);
                 int UserId = UserId(q, user);
 
-                SessionFactory factory = HibernateUtil.getSessionFactory();
-                Session session = factory.openSession();
-                Transaction transaction = session.beginTransaction();
+                
                 String s = "delete from Favoritos a where a.id_user='" + UserId + "' and a.id_ciudad='" + Cityid + "'";
-                Query query = session.createQuery(s);
-                int count = query.executeUpdate();
+                q.Query2(s);
 
             } catch (Exception e) {
                 out.println(e);

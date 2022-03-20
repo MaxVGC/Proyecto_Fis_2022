@@ -89,7 +89,7 @@ public class validarfavorito extends HttpServlet {
                 int Cityid = CityId(q, city);
                 int UserId = UserId(q, user);
 
-                String s = "select count(a) from Favoritos a where a.id_user=" + UserId + " and a.id_ciudad=" + Cityid;
+                String s = "select a.id_user from Favoritos a where a.id_user=" + UserId + " and a.id_ciudad=" + Cityid;
                 List res = q.Query(s);
                 Iterator it = res.iterator();                
                 if (it.hasNext()) {
