@@ -76,15 +76,13 @@ public class Querys {
         return result;
     }
 
-    public String Query2(String opc) {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(opc);
-        int count = query.executeUpdate();
-        transaction.commit();
-        session.clear();
-        return count+"";
+    public List Query2(String opc) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List result = session.createQuery(opc).list();
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 
 }

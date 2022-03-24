@@ -76,7 +76,7 @@ public class informacionusuario extends HttpServlet {
 
             Querys q = new Querys();
             String s = "select a.nombre, a.apellido, a.correo from Usuarios a where a.nickname='" + user + "'";
-            List res = q.Query(s);
+            List res = q.Query2(s);
             Iterator it = res.iterator();
             String json = GenerarJSON(it);
             out.println(json);
